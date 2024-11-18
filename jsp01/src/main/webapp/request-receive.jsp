@@ -7,6 +7,7 @@
     double weight = Double.parseDouble(request.getParameter("weight"));
     double height = Double.parseDouble(request.getParameter("height"));
     double bmi =  weight/Math.pow(height/100,2);
+    String sex = request.getParameter("sex");
     String strBmi = "";
     if(bmi<18.5) {
         strBmi = "저체중";
@@ -26,8 +27,10 @@
     <title>제목</title>
 </head>
 <body>
-    <% out.println("안녕 내 이름은 "+name+" 이고 나이는 "+age+"살이야 몸무게는 "+weight+"입니다.");  %>
-    <% out.println("당신의 bmi="+bmi+"이고 "+strBmi+"입니다.");  %>
+    <% out.println("안녕 내 이름은 "+name+" 이고 나이는 "+age+"살이야 몸무게는 "+weight+"입니다.<br>");  %>
+    <% out.println("당신의 bmi="+bmi+"이고 "+strBmi+"입니다.<br>");  %>
+    <% out.println("당신의 성별은 "+sex+"입니다.");  %>
+
     <!--<h1>안녕 내 이름은 장성호 이고 나이는 20살이야</h1>-->
 </body>
 </html>
