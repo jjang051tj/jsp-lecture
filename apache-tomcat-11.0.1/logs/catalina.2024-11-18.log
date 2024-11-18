@@ -1,0 +1,88 @@
+18-Nov-2024 16:31:15.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 서버 버전 이름:    Apache Tomcat/11.0.1
+18-Nov-2024 16:31:15.472 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server 빌드 시각:  Nov 6 2024 19:08:24 UTC
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server 버전 번호:  11.0.1.0
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 운영체제 이름:     Windows 10
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 운영체제 버전:     10.0
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 아키텍처:          amd64
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 자바 홈:           C:\Program Files\Java\jdk-21
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM 버전:          21.0.5+9-LTS-239
+18-Nov-2024 16:31:15.473 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM 벤더:          Oracle Corporation
+18-Nov-2024 16:31:15.474 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:     C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1
+18-Nov-2024 16:31:15.474 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:     C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1
+18-Nov-2024 16:31:15.610 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.util.logging.config.file=c:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1/conf/logging.properties
+18-Nov-2024 16:31:15.610 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+18-Nov-2024 16:31:15.610 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djdk.tls.ephemeralDHKeySize=2048
+18-Nov-2024 16:31:15.610 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+18-Nov-2024 16:31:15.610 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+18-Nov-2024 16:31:15.610 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Dcatalina.base=c:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1
+18-Nov-2024 16:31:15.611 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Dcatalina.home=c:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1
+18-Nov-2024 16:31:15.611 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log 명령 행 아규먼트:  -Djava.io.tmpdir=c:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1/temp
+18-Nov-2024 16:31:15.629 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR 버전 [1.7.4]을(를) 사용한, APR 기반 Apache Tomcat Native 라이브러리 [2.0.8]을(를) 로드했습니다.
+18-Nov-2024 16:31:15.694 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL이 성공적으로 초기화되었습니다: [OpenSSL 3.0.14 4 Jun 2024]
+18-Nov-2024 16:31:16.221 INFO [main] org.apache.coyote.AbstractProtocol.init 프로토콜 핸들러 ["http-nio-8080"]을(를) 초기화합니다.
+18-Nov-2024 16:31:16.260 SEVERE [main] org.apache.catalina.util.LifecycleBase.handleSubClassException 구성요소 [Connector["http-nio-8080"]]을(를) 초기화하지 못했습니다.
+	org.apache.catalina.LifecycleException: 프로토콜 핸들러 초기화가 실패했습니다.
+		at org.apache.catalina.connector.Connector.initInternal(Connector.java:1035)
+		at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:122)
+		at org.apache.catalina.core.StandardService.initInternal(StandardService.java:525)
+		at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:122)
+		at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:953)
+		at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:122)
+		at org.apache.catalina.startup.Catalina.load(Catalina.java:706)
+		at org.apache.catalina.startup.Catalina.load(Catalina.java:729)
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+		at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:299)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:469)
+	Caused by: java.net.BindException: Address already in use: bind
+		at java.base/sun.nio.ch.Net.bind0(Native Method)
+		at java.base/sun.nio.ch.Net.bind(Net.java:565)
+		at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+		at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+		at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:240)
+		at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:195)
+		at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1472)
+		at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:1485)
+		at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:633)
+		at org.apache.coyote.http11.AbstractHttp11Protocol.init(AbstractHttp11Protocol.java:83)
+		at org.apache.catalina.connector.Connector.initInternal(Connector.java:1033)
+		... 11 more
+18-Nov-2024 16:31:16.261 INFO [main] org.apache.catalina.startup.Catalina.load [1071] 밀리초 내에 서버가 초기화되었습니다.
+18-Nov-2024 16:31:16.354 INFO [main] org.apache.catalina.core.StandardService.startInternal 서비스 [Catalina]을(를) 시작합니다.
+18-Nov-2024 16:31:16.354 INFO [main] org.apache.catalina.core.StandardEngine.startInternal 서버 엔진을 시작합니다: [Apache Tomcat/11.0.1]
+18-Nov-2024 16:31:16.369 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\docs]을(를) 배치합니다.
+18-Nov-2024 16:31:17.053 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\docs]에 대한 배치가 [681] 밀리초에 완료되었습니다.
+18-Nov-2024 16:31:17.054 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\examples]을(를) 배치합니다.
+18-Nov-2024 16:31:18.090 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\examples]에 대한 배치가 [1,036] 밀리초에 완료되었습니다.
+18-Nov-2024 16:31:18.090 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\host-manager]을(를) 배치합니다.
+18-Nov-2024 16:31:18.186 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\host-manager]에 대한 배치가 [96] 밀리초에 완료되었습니다.
+18-Nov-2024 16:31:18.187 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\manager]을(를) 배치합니다.
+18-Nov-2024 16:31:18.296 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\manager]에 대한 배치가 [109] 밀리초에 완료되었습니다.
+18-Nov-2024 16:31:18.296 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\ROOT]을(를) 배치합니다.
+18-Nov-2024 16:31:18.371 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory 웹 애플리케이션 디렉토리 [C:\Users\tjoeunis205\Desktop\java-study\jsp-lecture\apache-tomcat-11.0.1\webapps\ROOT]에 대한 배치가 [74] 밀리초에 완료되었습니다.
+18-Nov-2024 16:31:18.382 INFO [main] org.apache.catalina.startup.Catalina.start 서버가 [2120] 밀리초 내에 시작되었습니다.
+18-Nov-2024 16:31:18.402 SEVERE [main] org.apache.catalina.core.StandardServer.await 주소 [localhost]와(과) 포트 [8005]에, 서버 셧다운 소켓을 생성하지 못했습니다. (base 포트 [8005], offset [0])
+	java.net.BindException: Address already in use: bind
+		at java.base/sun.nio.ch.Net.bind0(Native Method)
+		at java.base/sun.nio.ch.Net.bind(Net.java:565)
+		at java.base/sun.nio.ch.Net.bind(Net.java:554)
+		at java.base/sun.nio.ch.NioSocketImpl.bind(NioSocketImpl.java:636)
+		at java.base/java.net.ServerSocket.bind(ServerSocket.java:391)
+		at java.base/java.net.ServerSocket.<init>(ServerSocket.java:278)
+		at org.apache.catalina.core.StandardServer.await(StandardServer.java:532)
+		at org.apache.catalina.startup.Catalina.await(Catalina.java:845)
+		at org.apache.catalina.startup.Catalina.start(Catalina.java:793)
+		at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+		at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:342)
+		at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:470)
+18-Nov-2024 16:31:18.403 INFO [main] org.apache.coyote.AbstractProtocol.pause 프로토콜 핸들러 ["http-nio-8080"]을(를) 일시 정지 중
+18-Nov-2024 16:31:18.403 INFO [main] org.apache.catalina.core.StandardService.stopInternal 서비스 [Catalina]을(를) 중지시킵니다.
+18-Nov-2024 16:31:18.412 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks ThreadLocal 메모리 누수 탐지를 위해서는 "--add-opens=java.base/java.lang=ALL-UNNAMED" 자바 명령 행 아규먼트를 추가하십시오. 또는 이 경고 메시지를 없애고 싶다면 ThreadLocal 메모리 누수 탐지 옵션을 비활성화 시키십시오.
+18-Nov-2024 16:31:18.420 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets Java 9에서 실행하면서 RMI Target 메모리 누수 탐지를 사용 가능하게 하려면, "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED"를 JVM 명령 행 아규먼트에 추가해야 합니다. 또는, RMI Target 메모리 누수 탐지를 사용불능 상태로 설정함으로써, 이 경고를 없앨 수도 있습니다.
+18-Nov-2024 16:31:18.435 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks ThreadLocal 메모리 누수 탐지를 위해서는 "--add-opens=java.base/java.lang=ALL-UNNAMED" 자바 명령 행 아규먼트를 추가하십시오. 또는 이 경고 메시지를 없애고 싶다면 ThreadLocal 메모리 누수 탐지 옵션을 비활성화 시키십시오.
+18-Nov-2024 16:31:18.435 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets Java 9에서 실행하면서 RMI Target 메모리 누수 탐지를 사용 가능하게 하려면, "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED"를 JVM 명령 행 아규먼트에 추가해야 합니다. 또는, RMI Target 메모리 누수 탐지를 사용불능 상태로 설정함으로써, 이 경고를 없앨 수도 있습니다.
+18-Nov-2024 16:31:18.438 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks ThreadLocal 메모리 누수 탐지를 위해서는 "--add-opens=java.base/java.lang=ALL-UNNAMED" 자바 명령 행 아규먼트를 추가하십시오. 또는 이 경고 메시지를 없애고 싶다면 ThreadLocal 메모리 누수 탐지 옵션을 비활성화 시키십시오.
+18-Nov-2024 16:31:18.438 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets Java 9에서 실행하면서 RMI Target 메모리 누수 탐지를 사용 가능하게 하려면, "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED"를 JVM 명령 행 아규먼트에 추가해야 합니다. 또는, RMI Target 메모리 누수 탐지를 사용불능 상태로 설정함으로써, 이 경고를 없앨 수도 있습니다.
+18-Nov-2024 16:31:18.441 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalsForLeaks ThreadLocal 메모리 누수 탐지를 위해서는 "--add-opens=java.base/java.lang=ALL-UNNAMED" 자바 명령 행 아규먼트를 추가하십시오. 또는 이 경고 메시지를 없애고 싶다면 ThreadLocal 메모리 누수 탐지 옵션을 비활성화 시키십시오.
+18-Nov-2024 16:31:18.441 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesRmiTargets Java 9에서 실행하면서 RMI Target 메모리 누수 탐지를 사용 가능하게 하려면, "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED"를 JVM 명령 행 아규먼트에 추가해야 합니다. 또는, RMI Target 메모리 누수 탐지를 사용불능 상태로 설정함으로써, 이 경고를 없앨 수도 있습니다.

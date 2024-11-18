@@ -39,8 +39,6 @@
         <li>이메일 : <%= userEmail %></li>
         <li>취미 일반 반복문 : <%= strHobbies01 %></li>
         <li>취미 람다 : <%= strHobbies02 %></li>
-
-
     </ul>
 </body>
 </html>
