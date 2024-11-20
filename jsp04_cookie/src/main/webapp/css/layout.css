@@ -1,0 +1,14 @@
+* {
+    margin:0;
+    padding:0;
+}
+#popup {
+    position: fixed;
+    top:100px;
+    left:100px;
+    background: #fff;
+    border:1px solid #ccc;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+    min-width: 400px;
+    min-height: 400px;
+}
