@@ -20,4 +20,7 @@
         }
     }
     response.sendRedirect("popupMain.jsp");
+    //client에서 서버로 데이터 전달방법
+    //1. form
+    //2. ajax
 %>

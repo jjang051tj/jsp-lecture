@@ -7,10 +7,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <h2>로그인 페이지</h2>
+    <form action="idSaveProcess.jsp" method="post">
+        <div><label><span>아이디</span><input type="text" name="userId"></label></div>
+        <div><label><span>패스워드</span><input type="password" name="userPw"></label></div>
+        <div><label><input type="checkbox" name="saveIdCheck" value="yes" checked><span>아이디 저장하기</span></label></div>
+        <div><button>로그인</button></div>
+    </form>
+</body>
 </html>

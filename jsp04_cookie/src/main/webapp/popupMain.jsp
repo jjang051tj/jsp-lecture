@@ -6,7 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%
+    Cookie cookies[] = request.getCookies();
+    String onedayPopup = "on";
+    for (Cookie c : cookies) {
+        String cookieName = c.getName();
+        String cookieValue = c.getValue();
+        if (cookieName.equals("onedayCookie")&&cookieValue.equals("off")) {
+            onedayPopup = "off";
+        }
+    }
+%>
 <html>
 <head>
     <title>Title</title>
@@ -15,16 +25,7 @@
 <body>
     <h1>오늘 하루 이창을 열지 않기 구현</h1>
     <%
-        Cookie cookies[] = request.getCookies();
-        String onedayPopup = "on";
-        for (Cookie c : cookies) {
-            String cookieName = c.getName();
-            String cookieValue = c.getValue();
-            if (cookieName.equals("onedayCookie")) {
-                onedayPopup = "off";
-            }
-        }
-
+        //String onedayPopup = "on";
         if(onedayPopup.equals("on")) {
     %>
     <aside id="popup">

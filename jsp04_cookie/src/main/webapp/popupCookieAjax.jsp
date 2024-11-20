@@ -9,8 +9,7 @@
 <%
     String strOneday = request.getParameter("oneday");
     if(strOneday!=null) {
-        int oneday =  Integer.parseInt(request.getParameter("oneday"));
-        System.out.println("oneday==="+oneday);
+        int oneday = Integer.parseInt(strOneday);
         if(oneday==1) {
             //오늘 하루 이창을 열지 않겠다고 체크한 상태
             Cookie onedayCookie = new Cookie("onedayCookie","off");
@@ -19,8 +18,5 @@
             response.addCookie(onedayCookie);
         }
     }
-    response.sendRedirect("popupMain.jsp");
-    //client에서 서버로 데이터 전달방법
-    //1. form
-    //2. ajax
+
 %>

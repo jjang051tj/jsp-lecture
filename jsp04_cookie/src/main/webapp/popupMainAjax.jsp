@@ -51,11 +51,18 @@
     const popup = document.querySelector("#popup");
     const onedayCheck =  document.querySelector("#oneday");
     btnClose.addEventListener("click",(e)=>{
-        if(!onedayCheck.checked) {
-            console.log("click");
-            popup.style.display="none";
-
-            e.preventDefault();
+        e.preventDefault();
+        popup.style.display="none";
+        if(onedayCheck.checked) {
+            fetch("popupCookieAjax.jsp?oneday=1", {
+                method: "GET",
+            })
+                .then((response)=>{
+                    response.json()
+                })
+                .then((data)=>{
+                    console.log(data);
+                });
         }
     });
 </script>
