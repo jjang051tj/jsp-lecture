@@ -22,5 +22,14 @@
             <button id="btn-close">닫기</button>
         </div>
     </aside>
+
+<script>
+    const btnClose = document.querySelector("#btn-close");
+    const popup = document.querySelector("#popup");
+    btnClose.addEventListener("click",()=>{
+        console.log("click");
+        popup.style.display="none";
+    })
+</script>
 </body>
 </html>

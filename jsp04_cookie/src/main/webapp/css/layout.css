@@ -10,5 +10,18 @@
     border:1px solid #ccc;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
     min-width: 400px;
-    min-height: 400px;
+    /*min-height: 400px;*/
+    padding:10px;
+}
+#popup .contents {
+    background: #eee;
+    min-height: 300px;
+}
+#popup .btn-box {
+    display: flex;
+    justify-content: end;
+    padding:10px;
+}
+#popup .btn-box #btn-close {
+    margin-left: 10px;
 }
