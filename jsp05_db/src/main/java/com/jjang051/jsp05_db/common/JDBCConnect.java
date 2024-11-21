@@ -28,7 +28,7 @@ public class JDBCConnect {
     public JDBCConnect(String driver, String url, String userId, String userPw ) {
         try {
             Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url,userId,userPw);
+            conn = DriverManager.getConnection(url,userId,userPw);
             System.out.println(userId+"/"+userPw+"   oracle parameter connected");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -39,17 +39,33 @@ public class JDBCConnect {
 
     public JDBCConnect(ServletContext application) {
         try {
+            //jsp는 java를 가지고 html좀 편하게 쓰자고 만든거
+            // application = ServletContext
+            // request = HttpServletRequest
+            // response = HttpServletResponse
             String driver = application.getInitParameter("OracleDriver");
             String url = application.getInitParameter("OracleUrl");
             String userId = application.getInitParameter("OracleId");
             String userPw = application.getInitParameter("OraclePw");
             Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url,userId,userPw);
+            conn = DriverManager.getConnection(url,userId,userPw);
             System.out.println(userId+"/"+userPw+"   oracle application connected");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void close() {
+        try {
+            if(rs!=null)  rs.close();
+            if(stmt!=null)  stmt.close();
+            if(pstmt!=null)  pstmt.close();
+            if(conn!=null)  conn.close();
+            System.out.println("JDBC connection closed");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

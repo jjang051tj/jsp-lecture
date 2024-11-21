@@ -25,10 +25,10 @@
 //    String userPw = application.getInitParameter("OraclePw");
 //    JDBCConnect jdbcConnect = new JDBCConnect(driver, url,userId,userPw);
 
-    //JDBCConnect jdbcConnect = new JDBCConnect(application);
+    JDBCConnect jdbcConnect = new JDBCConnect(application);
     //connection pool   was(톰캣이 제공한다.)
 
-    DBConnectionPool dbConnectionPool = new DBConnectionPool();
+    //DBConnectionPool dbConnectionPool = new DBConnectionPool();
 %>
 <html>
 <head>
