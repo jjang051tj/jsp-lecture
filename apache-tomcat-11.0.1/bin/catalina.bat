@@ -102,6 +102,7 @@ rem                   set TITLE=Tomcat.Cluster#1.Server#1 [%DATE% %TIME%]
 rem ---------------------------------------------------------------------------
 
 setlocal
+set "JAVA_OPTS=%JAVA_OPTS% -Duser.language=en"
 
 rem Suppress Terminate batch job on CTRL+C
 if not ""%1"" == ""run"" goto mainEntry
