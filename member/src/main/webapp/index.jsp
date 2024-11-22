@@ -25,5 +25,6 @@
 <h1><%= "Hello World!" %></h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+<a href="insert-member.jsp">회원가입</a>
 </body>
 </html>
