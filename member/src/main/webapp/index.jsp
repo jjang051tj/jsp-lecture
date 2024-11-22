@@ -13,7 +13,8 @@
         System.out.println("db connected");
     }
     */
-    JDBCConnection jdbcConnection = new JDBCConnection();
+    //JDBCConnection jdbcConnection = new JDBCConnection();
+    JDBCConnection jdbcConnection = new JDBCConnection(application);
 %>
 <!DOCTYPE html>
 <html>
