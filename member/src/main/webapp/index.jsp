@@ -1,15 +1,19 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Connection" %>
+<%@ page import="com.jjang051.member.common.JDBCConnection" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
+    /*
     Class.forName("oracle.jdbc.OracleDriver");
     String url = "jdbc:oracle:thin:@localhost:1521:xe";
-    String userId = "scott";
-    String userPw = "tiger";
+    String userId = "jjang052";
+    String userPw = "1234";
     Connection connection = DriverManager.getConnection(url,userId,userPw);
     if(connection!=null) {
         System.out.println("db connected");
     }
+    */
+    JDBCConnection jdbcConnection = new JDBCConnection();
 %>
 <!DOCTYPE html>
 <html>
