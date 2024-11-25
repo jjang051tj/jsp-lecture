@@ -17,11 +17,15 @@
   //1.연결
   JDBCConnection jdbcConnection = new JDBCConnection(application);
 
-  String sql = "INSERT INTO MEMBER VALUES ('"+userId+"','"+userPw+"','"+userName+"',sysdate)";
-  PreparedStatement preparedStatement =
+  String sql = "INSERT INTO MEMBER VALUES (?,?,?,sysdate)";
+  jdbcConnection.preparedStatement =
           jdbcConnection.connection.prepareStatement(sql);
-  int result = preparedStatement.executeUpdate();
+  jdbcConnection.preparedStatement.setString(1,userId);
+  jdbcConnection.preparedStatement.setString(2,userPw);
+  jdbcConnection.preparedStatement.setString(3,userName);
+  int result = jdbcConnection.preparedStatement.executeUpdate();
   //  System.out.println("result==="+result);
+  jdbcConnection.close();
   if(result>0) {
     JSFunction.alertAndLocation
             ("회원가입되었습니다. 로그인 페이지로 이동합니다.", "login.jsp", response);
@@ -29,4 +33,5 @@
     JSFunction.alertAndBack
             ("알 수 없는 오류가 발생되었습니다. 잠시 후 다시 시도해 주세요.", response);
   }
+
 %>

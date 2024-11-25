@@ -23,7 +23,6 @@ public class JDBCConnection {
         }
     }
     public JDBCConnection(ServletContext application) {
-
         try {
             String driver = application.getInitParameter("OracleDriver");
             String url = application.getInitParameter("OracleURL");
@@ -36,6 +35,15 @@ public class JDBCConnection {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public void close() {
+        try {
+            if(resultSet!=null) resultSet.close();
+            if(preparedStatement!=null) preparedStatement.close();
+            if(connection!=null) connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

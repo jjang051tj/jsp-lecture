@@ -13,20 +13,28 @@
     String userId = request.getParameter("userId");
     String userPw = request.getParameter("userPw");
     JDBCConnection jdbcConnection = new JDBCConnection(application);
-    String sql =  "select * from member where userId = '"+userId+"' and userPw = '"+userPw+"'";
-    PreparedStatement preparedStatement = jdbcConnection.connection.prepareStatement(sql);
-    ResultSet resultSet = preparedStatement.executeQuery();
+
+    String sql =  "select * from member where userId = ? and userPw = ?";
+    jdbcConnection.preparedStatement = jdbcConnection.connection.prepareStatement(sql);
+    jdbcConnection.preparedStatement.setString(1,userId);
+    jdbcConnection.preparedStatement.setString(2,userPw);
+    jdbcConnection.resultSet = jdbcConnection.preparedStatement.executeQuery();
     String loggedUserId = "";
     String loggedUserName = "";
     String loggedUserRegdate = "";
-    if(resultSet.next()) {
-        loggedUserId = resultSet.getString("userId");
-        loggedUserName = resultSet.getString("userName");
-        loggedUserRegdate = resultSet.getString("regDate");
+    if(jdbcConnection.resultSet.next()) {
+        loggedUserId = jdbcConnection.resultSet.getString("userId");
+        loggedUserName = jdbcConnection.resultSet.getString("userName");
+        loggedUserRegdate = jdbcConnection.resultSet.getString("regDate");
         System.out.println(loggedUserId+"/"+loggedUserName+"/"+loggedUserRegdate);
+        //forwrd말고 페이지가 바껴도 데이터를 저장하고 싶다.
+        session.setAttribute("loggedUserId", loggedUserId);
+        session.setAttribute("loggedUserName", loggedUserName);
+        JSFunction.alertAndLocation("로그인되었습니다.", "index.jsp", response);
     }else {
         JSFunction.alertAndBack("아이디 패스워드 확인해 주세요",response);
     }
+    jdbcConnection.close();
 %>
 <html>
 <head>

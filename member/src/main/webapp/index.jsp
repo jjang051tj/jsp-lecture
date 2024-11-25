@@ -15,6 +15,7 @@
     */
     //JDBCConnection jdbcConnection = new JDBCConnection();
     JDBCConnection jdbcConnection = new JDBCConnection(application);
+    String loggedUserName =(String)session.getAttribute("loggedUserName");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,16 @@
 <body>
 <h1><%= "Hello World!" %></h1>
 <br/>
+<% if(loggedUserName!=null) {%>
+    <h1><%= loggedUserName %></h1>
+<%}%>
 <a href="hello-servlet">Hello Servlet</a>
-<a href="insert-member.jsp">회원가입</a>
+
+<% if(loggedUserName!=null) {%>
+    <a href="logout.jsp">로그아웃</a>
+    <a href="info-member.jsp"><%= loggedUserName %></a>
+<%} else {%>
+    <a href="login.jsp">로그인</a>
+<%}%>
 </body>
 </html>
