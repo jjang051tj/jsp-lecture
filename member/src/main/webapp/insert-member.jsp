@@ -30,6 +30,7 @@
 
         btnDuplicateId.addEventListener("click",(e)=>{
             e.preventDefault(); //아이디 중복체크 버튼 눌렀을때 form에 있는 action주소로 못 날아가게 하기...
+
         });
         btnSignup.addEventListener("click",(e)=>{
             if(document.signup.userId.value==="") {
@@ -44,6 +45,10 @@
             }else if(document.signup.userEmail.value==="") {
                 alert("사용자 이름은 필수 입력 사항입니다.");
                 e.preventDefault();
+            }
+            if(document.signup.userPw.value!=document.signup.userPw02.value) {
+                e.preventDefault();
+                alert("비밀번호가 맞지 않습니다. 비밀번호 확인해주세요.");
             }
         });
     </script>
