@@ -12,7 +12,11 @@
 </head>
 <body>
     <form action="insert-member-process.jsp" method="post" name="signup">
-        <div><label>아이디</label><input type="text" name="userId" id="user-id"><button id="btn-duplicate-id">아이디 중복체크</button></div>
+        <div>
+
+            <label>아이디</label><input type="text" name="userId" id="user-id">
+            <button id="btn-duplicate-id">아이디 중복체크</button>
+        </div>
         <div><label>패스워드</label><input type="password" name="userPw"></div>
         <div><label>패스워드확인</label><input type="password" name="userPw02"></div>
         <div><label>이름</label><input type="text" name="userName"></div>
@@ -30,6 +34,17 @@
 
         btnDuplicateId.addEventListener("click",(e)=>{
             e.preventDefault(); //아이디 중복체크 버튼 눌렀을때 form에 있는 action주소로 못 날아가게 하기...
+            //여기서 아이디를 id-duplicate-check
+            fetch("id-duplicate-check.jsp?userId="+userId.value)
+                .then((response)=>response.json())
+                .then((json)=>{
+                    console.log(json);
+                    if(json.count==1) {
+                        alert("중복된 아이디입니다. 다른 걸로 다시 사용해 주세요.");
+                    }else  {
+                        alert("사용 가능한 아이디입니다.");
+                    }
+                })
 
         });
         btnSignup.addEventListener("click",(e)=>{
