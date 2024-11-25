@@ -34,6 +34,7 @@
     <a href="logout.jsp">로그아웃</a>
     <a href="info-member.jsp"><%= loggedUserName %></a>
 <%} else {%>
+    <a href="insert-member.jsp">회원가입</a>
     <a href="login.jsp">로그인</a>
 <%}%>
 </body>
