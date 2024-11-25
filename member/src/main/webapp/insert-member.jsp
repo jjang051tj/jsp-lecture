@@ -13,15 +13,14 @@
 <body>
     <form action="insert-member-process.jsp" method="post" name="signup">
         <div>
-
             <label>아이디</label><input type="text" name="userId" id="user-id">
             <button id="btn-duplicate-id">아이디 중복체크</button>
         </div>
         <div><label>패스워드</label><input type="password" name="userPw"></div>
         <div><label>패스워드확인</label><input type="password" name="userPw02"></div>
         <div><label>이름</label><input type="text" name="userName"></div>
-        <div><label>이메일</label><input type="text" name="userEmail"></div>
-        <div><label>우편번호</label><input type="text" name="zipcode"></div>
+        <div><label>이메일</label><input type="text" name="userEmail"><button id="btn-duplicate-email">이메일 중복체크</button></div>
+        <div><label>우편번호</label><input type="text" name="zipcode"readonly><button id="btn-zipcode">우편번호찾기</button></div>
         <div><label>주소</label><input type="text" name="addr01"></div>
         <div><label>상세주소</label><input type="text" name="addr02"></div>
         <div><label>전화번호</label><input type="text" name="tel"></div>
@@ -29,9 +28,29 @@
     </form>
     <script>
         const btnDuplicateId = document.querySelector("#btn-duplicate-id");
+        const btnDuplicateEmail = document.querySelector("#btn-duplicate-email");
+
         const btnSignup = document.querySelector("#btn-signup");
         const userId =  document.querySelector("#user-id");
 
+        let isValid = false;
+        let isEmailValid = false;
+        btnDuplicateEmail.addEventListener("click",(e)=>{
+            console.log(btnDuplicateEmail.value);
+            e.preventDefault(); //아이디 중복체크 버튼 눌렀을때 form에 있는 action주소로 못 날아가게 하기...
+            //여기서 아이디를 id-duplicate-check
+            fetch("email-duplicate-check.jsp?userEmail="+btnDuplicateEmail.value)
+                .then((response)=>response.json())
+                .then((json)=>{
+                    console.log(json);
+                    if(json.count==1) {
+                        alert("중복된 이메일입니다. 다른 걸로 다시 사용해 주세요.");
+                    }else  {
+                        alert("사용 가능한 이메일입니다.");
+                        isEmailValid=true;
+                    }
+                })
+        });
         btnDuplicateId.addEventListener("click",(e)=>{
             e.preventDefault(); //아이디 중복체크 버튼 눌렀을때 form에 있는 action주소로 못 날아가게 하기...
             //여기서 아이디를 id-duplicate-check
@@ -43,14 +62,23 @@
                         alert("중복된 아이디입니다. 다른 걸로 다시 사용해 주세요.");
                     }else  {
                         alert("사용 가능한 아이디입니다.");
+                        isValid=true;
                     }
                 })
-
         });
         btnSignup.addEventListener("click",(e)=>{
+            if(!isValid) {
+               e.preventDefault();
+               alert("아이디 중목체크 해주세요.");
+            }
+            if(!isEmailValid) {
+                e.preventDefault();
+                alert("이메일 중목체크 해주세요.");
+            }
             if(document.signup.userId.value==="") {
                 alert("회원아이디는 필수 입력 사항입니다.");
                 e.preventDefault();
+
             } else if(document.signup.userPw.value==="") {
                 alert("패스워드는 필수 입력 사항입니다.");
                 e.preventDefault();
