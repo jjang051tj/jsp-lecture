@@ -75,11 +75,8 @@
                 }
             }).open();
         }
-
-
         const btnDuplicateId = document.querySelector("#btn-duplicate-id");
         const btnDuplicateEmail = document.querySelector("#btn-duplicate-email");
-
         const btnSignup = document.querySelector("#btn-signup");
         const userId =  document.querySelector("#user-id");
         const btnZipcode =  document.querySelector("#btn-zipcode");
@@ -87,10 +84,6 @@
             e.preventDefault();
             makeZipcode();
         });
-
-
-
-
 
         let isValid = false;
         let isEmailValid = false;
