@@ -22,20 +22,6 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/login.jsp");
         dispatcher.forward(req, resp);
-        /*
-        resp.setContentType("text/html;charset=utf-8");
-        PrintWriter out = resp.getWriter();
-        out.println("{!DOCTYPE html}");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet Login</title>");
-        out.println("</head>");
-        out.println("<form>");
-        out.println("<input type=\"text\" name=\"userId\">");
-        out.println("<input type=\"text\" name=\"userPw\">");
-        out.println("<button>로그인</button>");
-        out.println("</form>");
-         */
     }
 
     @Override
