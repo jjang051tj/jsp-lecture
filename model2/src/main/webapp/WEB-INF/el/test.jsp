@@ -1,5 +1,9 @@
 <%@ page import="com.jjang051.model2.dto.MemberDto" %>
-<%@ page import="com.jjang051.model2.utils.CookieManager" %><%--
+<%@ page import="com.jjang051.model2.utils.CookieManager" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: tjoeunis205
   Date: 2024-11-27
@@ -19,6 +23,22 @@
     request.setAttribute("loggedMemberDto",loggedMemberDto);
 
     CookieManager.makeCookie(response,"cookieName", "1000",60*60);
+
+    List<String> list = new ArrayList<>();
+    list.add("눈온다");
+    list.add("열라 온다");
+    list.add("집에 어떻게 가지...");
+    Map<String,String> hashMap = new HashMap<>();
+    hashMap.put("snow","눈");
+    hashMap.put("snowman","눈사람");
+    pageContext.setAttribute("list",list);
+    pageContext.setAttribute("hashMap",hashMap);
+    int num01= 10;
+    pageContext.setAttribute("num01",10);
+    pageContext.setAttribute("num02",20);
+
+    //pageContext,request,session,application
+    //el expression language
 %>
 <html>
 <head>
@@ -51,5 +71,44 @@
     <h2>${header["user-agent"]}</h2>
     <h2>${header.cookie}</h2>
     <h2>${pageContext.request.contextPath}</h2>
+    <hr>
+    <h2>${list[0]}/${list[1]}/${list[2]}</h2>
+    <h2>${hashMap.snow}/${hashMap["snowman"]}</h2>
+    <hr>
+    <h2>num01+num02 = ${pageScope.num01+pageScope.num02}</h2>
+    <h2>num01+num02 = ${num01+num02}</h2>
+    <h2>num02-num01 = ${num02-num01}</h2>
+    <h2>num01*num02 = ${num02*num01}</h2>
+    <h2>num02/num01 = ${num02/num01}</h2>
+    <h2>num02%num01 = ${num02%3}</h2>
+    <h2>num02%num01 = ${num02 mod 3}</h2>
+    <h2>num02/num01 = ${num02 div 3}</h2>
+    <hr>
+    <h2>num02 > num01 = ${num02 > num01}</h2>
+    <h2>num02 gt num01 = ${num02 gt num01}</h2>
+
+    <h2>num02 < num01 = ${num02 < num01}</h2>
+    <h2>num02 lt num01 = ${num02 lt num01}</h2>
+
+    <h2>num02 == num02 = ${num02 == num02}</h2>
+    <h2>num02 eq num02 = ${num02 eq num02}</h2>
+
+    <h2>num02 != num01 = ${num02 != num01}</h2>
+    <h2>num02 ne num01 = ${num02 ne num01}</h2>
+
+    <hr>
+
+    <h2>num02 > num01 && num02 != num01  = ${num02 > num01 && num02 != num01}</h2>
+    <h2>num02 > num01 and num02 != num01  = ${num02 gt num01 and num02 ne num01}</h2>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
