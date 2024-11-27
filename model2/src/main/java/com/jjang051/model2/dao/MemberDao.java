@@ -36,4 +36,24 @@ public class MemberDao extends JDBCConnection {
         }
         return memberDto;
     }
+    public int insertMember(MemberDto memberDto) {
+        int result=0;
+        try {
+            String sql = "INSERT INTO MEMBER VALUES (seq_member.nextval,?,?,?,?,?,?,?,sysdate)";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, memberDto.getUserId());
+            preparedStatement.setString(2, memberDto.getUserPw());
+            preparedStatement.setString(3, memberDto.getUserName());
+            preparedStatement.setString(4, memberDto.getUserEmail());
+            preparedStatement.setString(5, memberDto.getZipcode());
+            preparedStatement.setString(6, memberDto.getAddress());
+            preparedStatement.setString(7, memberDto.getTel());
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            close();
+        }
+        return result;
+    }
 }

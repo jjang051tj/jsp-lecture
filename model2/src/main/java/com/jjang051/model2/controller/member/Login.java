@@ -23,7 +23,6 @@ public class Login extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/login.jsp");
         dispatcher.forward(req, resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userId = req.getParameter("userId");

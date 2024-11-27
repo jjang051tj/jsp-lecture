@@ -8,39 +8,40 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../include/header.jsp" %>
 <main>
-    <div class="container-md">
-        <form>
+    <div class="container">
+        <h2 class="mt-5 mb-5">SIGN UP</h2>
+        <form action="../member/signup" method="post">
             <div class="mb-3">
-                <label for="userId" class="form-label" name="userId">USER ID</label>
-                <input type="text" class="form-control form-control-lg" id="userId" placeholder="USER ID">
+                <label for="userId" class="form-label" >USER ID</label>
+                <input type="text" class="form-control form-control-lg" name="userId" id="userId" placeholder="USER ID">
             </div>
             <div class="mb-3">
-                <label for="userPw" class="form-label" name="userPw">PASSWORD</label>
-                <input type="text" class="form-control form-control-lg" id="userPw" placeholder="PASSWORD">
+                <label for="userPw" class="form-label" >PASSWORD</label>
+                <input type="text" class="form-control form-control-lg" name="userPw" id="userPw" placeholder="PASSWORD">
             </div>
             <div class="mb-3">
-                <label for="userName" class="form-label" name="userName">USER NAME</label>
-                <input type="text" class="form-control form-control-lg" id="userName" placeholder="USER NAME">
+                <label for="userName" class="form-label" >USER NAME</label>
+                <input type="text" class="form-control form-control-lg" name="userName" id="userName" placeholder="USER NAME">
             </div>
             <div class="mb-3">
-                <label for="userEmail" class="form-label" name="userEmail">EMAIL</label>
-                <input type="text" class="form-control form-control-lg" id="userEmail" placeholder="name@example.com">
+                <label for="userEmail" class="form-label" >EMAIL</label>
+                <input type="text" class="form-control form-control-lg" name="userEmail" id="userEmail" placeholder="name@example.com">
             </div>
             <div class="mb-3">
-                <label for="zipcode" class="form-label" name="addr01">ZIPCODE</label>
-                <input type="text" class="form-control form-control-lg" id="zipcode" placeholder="ZIPCODE">
+                <label for="zipcode" class="form-label" >ZIPCODE</label>
+                <input type="text" class="form-control form-control-lg" name="zipcode" id="zipcode" placeholder="ZIPCODE">
             </div>
             <div class="mb-3">
-                <label for="addr01" class="form-label" name="addr01">ADDRESS</label>
-                <input type="text" class="form-control form-control-lg" id="addr01" placeholder="ADDRESS">
+                <label for="addr01" class="form-label" >ADDRESS</label>
+                <input type="text" class="form-control form-control-lg" name="addr01" id="addr01" placeholder="ADDRESS">
             </div>
             <div class="mb-3">
-                <label for="addr02" class="form-label" name="addr02">DETAIL ADDRESS</label>
-                <input type="text" class="form-control form-control-lg" id="addr02" placeholder="ADDRESS">
+                <label for="addr02" class="form-label" >DETAIL ADDRESS</label>
+                <input type="text" class="form-control form-control-lg" name="addr02" id="addr02" placeholder="ADDRESS">
             </div>
             <div class="mb-3">
-                <label for="addr02" class="form-label" name="tel">TEL</label>
-                <input type="text" class="form-control form-control-lg" id="tel" placeholder="TEL">
+                <label for="addr02" class="form-label" >TEL</label>
+                <input type="text" class="form-control form-control-lg" name="tel" id="tel" placeholder="TEL">
             </div>
             <div class="mt-5">
                 <button class="btn btn-primary">SIGN UP</button>
