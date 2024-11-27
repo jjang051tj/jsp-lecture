@@ -37,6 +37,14 @@
     pageContext.setAttribute("num01",10);
     pageContext.setAttribute("num02",20);
 
+
+    pageContext.setAttribute("nullStr",null);
+    pageContext.setAttribute("emptyStr","");
+    pageContext.setAttribute("lengthZero",new Integer[0]);
+    pageContext.setAttribute("sizeZero",new ArrayList<Object>());
+
+
+
     //pageContext,request,session,application
     //el expression language
 %>
@@ -101,14 +109,13 @@
     <h2>num02 > num01 && num02 != num01  = ${num02 > num01 && num02 != num01}</h2>
     <h2>num02 > num01 and num02 != num01  = ${num02 gt num01 and num02 ne num01}</h2>
 
+    <hr>
+    <h2>empty nullStr   ${empty nullStr}</h2>
+    <h2>empty emptyStr  ${empty emptyStr}</h2>
+    <h2>empty lengthZero ${empty lengthZero}</h2>
+    <h2>empty sizeZero ${empty sizeZero}</h2>
 
-
-
-
-
-
-
-
-
+    <h2>null + 10 = ${null + 10}</h2>
+    <h2>nullStr + 10 = ${nullStr + 10}</h2>
 </body>
 </html>
