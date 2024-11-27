@@ -8,16 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../include/header.jsp"%>
 <main class="form-signin w-100 m-auto">
-    <form>
+    <form action="../member/login" method="post">
         <img class="mb-4" src="../images/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com">
             <label for="floatingInput">User ID</label>
         </div>
         <div class="form-floating mt-2">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="userPw">
             <label for="floatingPassword">Password</label>
         </div>
 

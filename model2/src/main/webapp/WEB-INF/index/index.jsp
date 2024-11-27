@@ -11,5 +11,7 @@
         <div class="container">
             <h1>main</h1>
         </div>
+        <c:set var="directVar" value="100" />
+        <h2>${pageScope.directVar}</h2>
     </main>
 <%@ include file="../include/footer.jsp"%>

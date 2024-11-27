@@ -45,7 +45,7 @@ public class MemberDao extends JDBCConnection {
             preparedStatement.setString(2, memberDto.getUserPw());
             preparedStatement.setString(3, memberDto.getUserName());
             preparedStatement.setString(4, memberDto.getUserEmail());
-            preparedStatement.setString(5, memberDto.getZipcode());
+            preparedStatement.setInt(5, Integer.parseInt(memberDto.getZipcode()));
             preparedStatement.setString(6, memberDto.getAddress());
             preparedStatement.setString(7, memberDto.getTel());
             result = preparedStatement.executeUpdate();
