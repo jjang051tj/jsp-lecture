@@ -11,6 +11,14 @@ public class MemberDto {
     private String address;
     private String regDate;
 
+    public MemberDto() {
+    }
+
+    public MemberDto(String userId, String userName) {
+        this.userId = userId;
+        this.userName = userName;
+    }
+
     public int getNo() {
         return no;
     }
