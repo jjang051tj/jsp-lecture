@@ -104,17 +104,19 @@
         e.preventDefault();
         execDaumPostcode();
     });
+    const userId =  document.querySelector("#userId");
     btnDuplicateId.addEventListener("click",(e)=>{
+
         e.preventDefault();
         e.stopImmediatePropagation(); //이벤트 전파 막기
-        fetch("../member/id-check?userId=jjang051")
+        fetch("../member/id-check?userId="+userId.value)
             .then(response=>response.json())
             .then(json=>{
                 console.log(json);
                 if(json.result>0) {
                     alert("쓸 수 없는 아이디입니다. 다시 확인해 주세요");
-                    document.querySelector("#userId").value="";
-                    document.querySelector("#userId").focus();
+                    userId.value="";
+                    userId.focus();
                 }
             })
     })
