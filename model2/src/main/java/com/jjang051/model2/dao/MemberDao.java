@@ -61,10 +61,12 @@ public class MemberDao extends JDBCConnection {
         try {
             String sql =  "select count(*) as count from member where userId = ?";
             preparedStatement = connection.prepareStatement(sql);
+            //connection.setAutoCommit(false);
             preparedStatement.setString(1, userId);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 result = resultSet.getInt("count");
+                //connection.commit();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -142,5 +144,25 @@ public class MemberDao extends JDBCConnection {
             close();
         }
         return memberDto;
+    }
+
+    public int updateMember(MemberDto changeMemberDto) {
+        int result = 0;
+        try {
+            String sql =  "update member set userName = ?,userEmail = ?, zipcode=?,address=? where userId = ? and userPw = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, changeMemberDto.getUserName());
+            preparedStatement.setString(2, changeMemberDto.getUserEmail());
+            preparedStatement.setString(3, changeMemberDto.getZipcode());
+            preparedStatement.setString(4, changeMemberDto.getAddress());
+            preparedStatement.setString(5, changeMemberDto.getUserId());
+            preparedStatement.setString(6, changeMemberDto.getUserPw());
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return result;
     }
 }

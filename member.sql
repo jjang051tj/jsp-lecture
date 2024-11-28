@@ -17,6 +17,10 @@ SELECT * FROM "MEMBER" ;
 
 SELECT count(*) AS count FROM MEMBER WHERE userid='jjang051';
 
+SELECT * FROM MEMBER WHERE userid='jjang051';
+
+
+update member set (userName,userEmail,address,zipcode,tel) = (?,?,?,?,?) where userId = ? and userPw = ?
 
 --시퀀스
 CREATE SEQUENCE seq_member
