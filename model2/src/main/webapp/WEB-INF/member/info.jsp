@@ -38,6 +38,10 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="mt-5 d-flex justify-content-center">
+                <a href="../member/password-check" class="btn btn-primary">MODIFY</a>
+                <button class="btn btn-secondary mx-2">DELETE</button>
+            </div>
         </div>
     </main>
 <%@ include file="../include/footer.jsp" %>
