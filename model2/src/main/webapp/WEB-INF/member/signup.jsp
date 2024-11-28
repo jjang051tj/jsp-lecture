@@ -27,6 +27,7 @@
             <div class="mb-3">
                 <label for="userEmail" class="form-label" >EMAIL</label>
                 <input type="text" class="form-control form-control-lg" name="userEmail" id="userEmail" placeholder="name@example.com">
+                <button class="btn  btn-lg btn-primary" id="btn-duplicate-email">이메일 중복 학인 </button>
             </div>
             <div class="mb-3">
                 <label for="zipcode" class="form-label" >ZIPCODE</label>
@@ -54,6 +55,10 @@
 <script>
     const btnZipcode = document.querySelector("#btn-zipcode");
     const btnDuplicateId = document.querySelector("#btn-duplicate-id");
+    const btnDuplicateEmail = document.querySelector("#btn-duplicate-email");
+    const userId =  document.querySelector("#userId");
+    const userEmail =  document.querySelector("#userEmail");
+
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -104,7 +109,7 @@
         e.preventDefault();
         execDaumPostcode();
     });
-    const userId =  document.querySelector("#userId");
+
     btnDuplicateId.addEventListener("click",(e)=>{
 
         e.preventDefault();
@@ -118,6 +123,15 @@
                     userId.value="";
                     userId.focus();
                 }
+            })
+    });
+    btnDuplicateEmail.addEventListener("click",(e)=>{
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        fetch("../member/email-check?userEmail="+userEmail.value)
+            .then(response=>response.json())
+            .then(json=>{
+                console.log(json);
             })
     })
 </script>
