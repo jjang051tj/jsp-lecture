@@ -56,4 +56,21 @@ public class MemberDao extends JDBCConnection {
         }
         return result;
     }
+    public int idCheck(String userId) {
+        int result=0;
+        try {
+            String sql =  "select count(*) as count from member where userId = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                result = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return result;
+    }
 }
