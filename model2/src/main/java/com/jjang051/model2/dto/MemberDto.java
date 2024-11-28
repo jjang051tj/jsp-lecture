@@ -90,4 +90,19 @@ public class MemberDto {
     public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
+
+    @Override
+    public String toString() {
+        return "MemberDto{" +
+                "no=" + no +
+                ", userId='" + userId + '\'' +
+                ", userPw='" + userPw + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", tel='" + tel + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", address='" + address + '\'' +
+                ", regDate='" + regDate + '\'' +
+                '}';
+    }
 }

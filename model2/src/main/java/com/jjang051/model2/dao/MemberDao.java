@@ -92,4 +92,29 @@ public class MemberDao extends JDBCConnection {
         }
         return result;
     }
+
+    public MemberDto getMemberInfo(String userId) {
+        MemberDto memberDto = null;
+        try {
+            String sql = "select * from member where userId = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                System.out.println("resultSet");
+                memberDto = new MemberDto();
+                memberDto.setUserName(resultSet.getString("userName"));
+                memberDto.setUserEmail(resultSet.getString("userEmail"));
+                memberDto.setAddress(resultSet.getString("address"));
+                memberDto.setTel(resultSet.getString("tel"));
+                memberDto.setZipcode(resultSet.getString("zipcode"));
+                memberDto.setRegDate(resultSet.getString("regDate"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return memberDto;
+    }
 }

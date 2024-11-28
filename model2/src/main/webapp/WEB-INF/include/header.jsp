@@ -33,7 +33,7 @@
         <c:choose>
                 <c:when test="${loggedMemberDto ne null}">
                     <div class="col-md-3 text-end">
-                        <a href="../member/info" class="btn btn-outline-primary me-2">${loggedMemberDto.userName}</a>
+                        <a href="../member/info?userId=${loggedMemberDto.userId}" class="btn btn-outline-primary me-2">${loggedMemberDto.userName}</a>
                         <a href="../member/logout" class="btn btn-primary">LogOut</a>
                     </div>
                 </c:when>
