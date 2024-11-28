@@ -117,4 +117,30 @@ public class MemberDao extends JDBCConnection {
         }
         return memberDto;
     }
+
+    public MemberDto passwordCheck(String userId, String userPw) {
+        MemberDto memberDto = null;
+        try {
+            String sql = "select * from member where userId = ? and userPw = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, userPw);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                memberDto = new MemberDto();
+                memberDto.setUserId(resultSet.getString("userId"));
+                memberDto.setUserName(resultSet.getString("userName"));
+                memberDto.setUserEmail(resultSet.getString("userEmail"));
+                memberDto.setAddress(resultSet.getString("address"));
+                memberDto.setTel(resultSet.getString("tel"));
+                memberDto.setZipcode(resultSet.getString("zipcode"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return memberDto;
+    }
 }

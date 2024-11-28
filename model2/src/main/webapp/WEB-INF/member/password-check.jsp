@@ -10,10 +10,11 @@
     <main>
         <div class="container">
             <h2>비밀번호확인</h2>
-            <form action="../member/login" method="post">
+            <form action="../member/password-check" method="post">
                 <img class="mb-4" src="../images/bootstrap-logo.svg" alt="" width="72" height="57">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com"
+                           value="jjang051">
                     <label for="floatingInput">User ID</label>
                 </div>
                 <div class="form-floating mt-2">
