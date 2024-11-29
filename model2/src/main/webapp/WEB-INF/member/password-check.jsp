@@ -9,9 +9,8 @@
 <%@ include file="../include/header.jsp" %>
     <main>
         <div class="container">
-            <h2>비밀번호확인</h2>
+            <h2 class="my-5">비밀번호확인</h2>
             <form action="../member/password-check" method="post">
-                <img class="mb-4" src="../images/bootstrap-logo.svg" alt="" width="72" height="57">
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com"
                            value="jjang051">

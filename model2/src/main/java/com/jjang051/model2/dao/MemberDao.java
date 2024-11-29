@@ -165,4 +165,20 @@ public class MemberDao extends JDBCConnection {
         }
         return result;
     }
+
+    public int deleteMember(String userId, String userPw) {
+        int result = 0;
+        try {
+            String sql = "delete from member where userId = ? and userPw = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, userPw);
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return result;
+    }
 }

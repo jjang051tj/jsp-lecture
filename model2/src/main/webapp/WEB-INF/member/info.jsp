@@ -9,7 +9,7 @@
 <%@ include file="../include/header.jsp" %>
     <main>
         <div class="container">
-            <h2>회원정보</h2>
+            <h2 class="my-5">회원정보</h2>
             <table class="table">
                 <tbody>
                     <tr>
@@ -40,7 +40,7 @@
             </table>
             <div class="mt-5 d-flex justify-content-center">
                 <a href="../member/password-check" class="btn btn-primary">MODIFY</a>
-                <button class="btn btn-secondary mx-2">DELETE</button>
+                <a href="../member/delete" class="btn btn-secondary mx-2">DELETE</a>
             </div>
         </div>
     </main>

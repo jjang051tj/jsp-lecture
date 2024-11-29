@@ -9,7 +9,7 @@
 <%@ include file="../include/header.jsp" %>
 <main>
   <div class="container">
-    <h2 class="mt-5 mb-5">SIGN UP</h2>
+    <h2 class="my-5">INFO CHANGE</h2>
     <form action="../member/member-info-change" method="post">
       <div class="mb-3">
         <label for="userId" class="form-label" >USER ID</label>

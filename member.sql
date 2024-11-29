@@ -17,10 +17,13 @@ SELECT * FROM "MEMBER" ;
 
 SELECT count(*) AS count FROM MEMBER WHERE userid='jjang051';
 
+ROLLBACK;
+
 SELECT * FROM MEMBER WHERE userid='jjang051';
 
 
-update member set (userName,userEmail,address,zipcode,tel) = (?,?,?,?,?) where userId = ? and userPw = ?
+update member set userName = 'abcd',userEmail = 'fjdkfjkd@fdsfhjk.com' 
+where userId = 'jjang051' and userPw = '1234';
 
 --시퀀스
 CREATE SEQUENCE seq_member
@@ -43,3 +46,12 @@ UPDATE MEMBER SET username = '아무개';
 ROLLBACK;
 
 INSERT INTO MEMBER VALUES ('jjang051','1234','장성호',sysdate);
+
+
+DELETE FROM "MEMBER" m WHERE userId = 'hong' AND userPw = '1234';
+
+
+ROLLBACK;
+
+
+
