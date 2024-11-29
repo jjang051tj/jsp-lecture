@@ -23,7 +23,9 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userId = CookieManager.readCookie(req, "rememberMe");
-        req.setAttribute("cookieUserId", userId);
+        System.out.println("cookie userId==="+userId);
+
+        //req.setAttribute("cookieUserId", userId);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/login.jsp");
         dispatcher.forward(req, resp);
     }
@@ -43,6 +45,8 @@ public class Login extends HttpServlet {
         if(loggedMemberDto!=null) {
             if(rememberMe!=null) {
                 CookieManager.makeCookie(resp, "rememberMe", userId, 60 * 60 * 24 * 30);
+            } else {
+                CookieManager.deleteCookie(resp, "rememberMe");
             }
             HttpSession session = req.getSession();
             session.setAttribute("loggedMemberDto", loggedMemberDto);
