@@ -9,6 +9,8 @@ public class BoardDto {
     private int hit;
     private String regDate;
 
+
+
     public BoardDto() {
     }
 

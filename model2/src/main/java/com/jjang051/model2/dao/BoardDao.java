@@ -55,4 +55,32 @@ public class BoardDao extends JDBCConnection {
         }
         return list;
     }
+
+    public BoardDto getBoard(int no) {
+        BoardDto boardDto = null;
+
+        try {
+            String sql="select * from board where no = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, no);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                boardDto = new BoardDto();
+                boardDto.setNo(resultSet.getInt("no"));
+                boardDto.setUserId(resultSet.getString("userId"));
+                boardDto.setUserName(resultSet.getString("userName"));
+                boardDto.setTitle(resultSet.getString("title"));
+                boardDto.setContent(resultSet.getString("content"));
+                boardDto.setHit(resultSet.getInt("hit"));
+                boardDto.setRegDate(resultSet.getString("regDate"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+
+
+        return boardDto;
+    }
 }
