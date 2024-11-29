@@ -5,6 +5,8 @@ import com.jjang051.model2.dto.BoardDto;
 import jakarta.servlet.ServletContext;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BoardDao extends JDBCConnection {
     public BoardDao(ServletContext application) {
@@ -26,5 +28,31 @@ public class BoardDao extends JDBCConnection {
             close();
         }
         return result;
+    }
+    public List<BoardDto> getAllBoard() {
+        List<BoardDto> list = null;
+
+        try {
+            String sql="select * from board";
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            list = new ArrayList<>();
+            while (resultSet.next()) {
+                BoardDto boardDto = new BoardDto();
+                boardDto.setNo(resultSet.getInt("no"));
+                boardDto.setUserId(resultSet.getString("userId"));
+                boardDto.setUserName(resultSet.getString("userName"));
+                boardDto.setTitle(resultSet.getString("title"));
+                boardDto.setContent(resultSet.getString("content"));
+                boardDto.setHit(resultSet.getInt("hit"));
+                boardDto.setRegDate(resultSet.getString("regDate"));
+                list.add(boardDto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return list;
     }
 }

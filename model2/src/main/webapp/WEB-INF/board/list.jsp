@@ -28,13 +28,13 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach begin="1" end="10">
+            <c:forEach items="${boardList}" var="boardDto">
                 <tr>
                     <th scope="row">1</th>
-                    <td><a href="../board/view">제목이 들어갑니다.</a></td>
-                    <td>장성호</td>
-                    <td>2024/11/29 11:20:30</td>
-                    <td>1</td>
+                    <td><a href="../board/view">${boardDto.title}</a></td>
+                    <td>${boardDto.userName}</td>
+                    <td>${boardDto.regDate}</td>
+                    <td>${boardDto.hit}</td>
                 </tr>
             </c:forEach>
             </tbody>
