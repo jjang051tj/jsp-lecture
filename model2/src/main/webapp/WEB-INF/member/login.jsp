@@ -13,7 +13,8 @@
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com">
+            <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com"
+                   value="${cookie.rememberMe.value}">
             <label for="floatingInput">User ID</label>
         </div>
         <div class="form-floating mt-2">
@@ -22,7 +23,9 @@
         </div>
 
         <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" name="rememberMe" value="remember-me" id="flexCheckDefault"
+                <c:if test="${not empty cookie.rememberMe}">checked</c:if>
+            >
             <label class="form-check-label" for="flexCheckDefault">
                 Remember me
             </label>
