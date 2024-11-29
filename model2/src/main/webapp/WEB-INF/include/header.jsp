@@ -35,6 +35,7 @@
                     <div class="col-md-3 text-end">
                         <a href="../member/info?userId=${loggedMemberDto.userId}" class="btn btn-outline-primary me-2">${loggedMemberDto.userName}</a>
                         <a href="../member/logout" class="btn btn-primary">LogOut</a>
+                        <a href="../board/list" class="btn btn-primary">Board</a>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -45,6 +46,7 @@
                     </div>
                 </c:otherwise>
         </c:choose>
+
 
 
     </header>

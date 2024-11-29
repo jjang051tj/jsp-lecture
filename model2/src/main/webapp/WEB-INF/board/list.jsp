@@ -39,9 +39,11 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="d-flex justify-content-center my-5">
-            <a href="../board/write" class="btn btn-primary">WRITE</a>
-        </div>
+        <c:if test="${not empty loggedMemberDto}">
+            <div class="d-flex justify-content-center my-5">
+                <a href="../board/write" class="btn btn-primary">WRITE</a>
+            </div>
+        </c:if>
     </div>
 </main>
 <%@ include file="../include/footer.jsp" %>

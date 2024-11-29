@@ -17,12 +17,15 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">CONTENT</label>
-                <textarea class="form-control" id="content" rows="8"></textarea>
+                <textarea class="form-control" id="content" name="content" rows="8"></textarea>
             </div>
+            <input type="hidden" name="userId" value="${loggedMemberDto.userId}">
+            <input type="hidden" name="userName" value="${loggedMemberDto.userName}">
             <div class="d-flex justify-content-center my-5">
                 <button class="btn btn-primary">WRITE</button>
                 <button class="btn btn-secondary mx-2" type="reset">RESET</button>
             </div>
+
         </form>
 
     </div>
