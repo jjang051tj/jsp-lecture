@@ -35,7 +35,7 @@
                 <tr>
                 <tr>
                     <th scope="row">내용</th>
-                    <td colspan="3">${boardDto.content}</td>
+                    <td colspan="3" style="white-space: pre">${boardDto.content}</td>
                 <tr>
             </tbody>
         </table>

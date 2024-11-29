@@ -33,7 +33,7 @@ public class BoardDao extends JDBCConnection {
         List<BoardDto> list = null;
 
         try {
-            String sql="select * from board";
+            String sql="select * from board  order by regDate desc";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             list = new ArrayList<>();
