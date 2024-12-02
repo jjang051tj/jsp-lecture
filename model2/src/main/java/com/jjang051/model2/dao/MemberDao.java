@@ -181,4 +181,23 @@ public class MemberDao extends JDBCConnection {
         }
         return result;
     }
+
+    public String getPassword(String userId, String userPw) {
+        String result = null;
+        try {
+            String sql = "select * from member where userId = ? and userPw = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, userPw);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                result = resultSet.getString("userPw");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return result;
+    }
 }

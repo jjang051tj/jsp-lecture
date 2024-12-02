@@ -97,4 +97,17 @@ public class BoardDao extends JDBCConnection {
 
         return boardDto;
     }
+
+    public int deleteBoard(int no) {
+        int result =0;
+        try {
+            String sql =  "delete from board where no = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, no);
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
 }

@@ -29,3 +29,19 @@ INSERT INTO board
 VALUES(seq_board.nextval , 'thejoeun1', '이한새' , '너무춥다' , '12월에 더 춥다는데,, ' ,0,sysdate);
 
 SELECT * FROM board WHERE NO=4;
+SELECT * FROM board;
+
+DELETE FROM board WHERE NO=4;
+
+ROLLBACK;
+
+
+
+
+
+
+
+
+
+
+
