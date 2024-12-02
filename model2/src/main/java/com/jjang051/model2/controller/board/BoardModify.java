@@ -25,7 +25,7 @@ public class BoardModify extends HttpServlet {
         req.setAttribute("boardDto", boardDto);
         HttpSession session = req.getSession();
         MemberDto loggedMemberDto = (MemberDto) session.getAttribute("loggedMemberDto");
-        if(loggedMemberDto!=null) {
+        if(loggedMemberDto!=null && boardDto.getUserId().equals(loggedMemberDto.getUserId())) {
             req.getRequestDispatcher("/WEB-INF/board/modify.jsp").forward(req, resp);
         } else {
             JSFunction.alertAndLocation("잘못된 접근입니다. 로그인 후 사용해 주세요.","../member/login",resp);
