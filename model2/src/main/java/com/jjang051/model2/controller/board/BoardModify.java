@@ -2,12 +2,14 @@ package com.jjang051.model2.controller.board;
 
 import com.jjang051.model2.dao.BoardDao;
 import com.jjang051.model2.dto.BoardDto;
+import com.jjang051.model2.dto.MemberDto;
 import com.jjang051.model2.utils.JSFunction;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -21,7 +23,13 @@ public class BoardModify extends HttpServlet {
         BoardDao boardDao = new BoardDao(req.getServletContext());
         BoardDto boardDto = boardDao.getBoard(no);
         req.setAttribute("boardDto", boardDto);
-        req.getRequestDispatcher("/WEB-INF/board/modify.jsp").forward(req, resp);
+        HttpSession session = req.getSession();
+        MemberDto loggedMemberDto = (MemberDto) session.getAttribute("loggedMemberDto");
+        if(loggedMemberDto!=null) {
+            req.getRequestDispatcher("/WEB-INF/board/modify.jsp").forward(req, resp);
+        } else {
+            JSFunction.alertAndLocation("잘못된 접근입니다. 로그인 후 사용해 주세요.","../member/login",resp);
+        }
     }
 
     @Override
