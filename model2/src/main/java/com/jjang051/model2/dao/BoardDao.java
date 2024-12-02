@@ -56,10 +56,24 @@ public class BoardDao extends JDBCConnection {
         return list;
     }
 
+    public int updateHit(int no) {
+        int result= 0;
+        try {
+            String sql="update board set hit = hit + 1 where no=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, no);
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+
     public BoardDto getBoard(int no) {
         BoardDto boardDto = null;
-
         try {
+            updateHit(no);
             String sql="select * from board where no = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, no);

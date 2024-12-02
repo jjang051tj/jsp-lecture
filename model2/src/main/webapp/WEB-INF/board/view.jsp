@@ -40,7 +40,12 @@
             </tbody>
         </table>
         <div class="d-flex justify-content-center my-5">
+<%--            <span>${loggedMemberDto.userId} / ${boardDto.userId}</span>--%>
             <a href="../board/list" class="btn btn-primary">LIST</a>
+            <c:if test="${loggedMemberDto.userId ne null and loggedMemberDto.userId == boardDto.userId}">
+                <a href="../board/delete" class="btn btn-danger mx-1">DELETE</a>
+                <a href="../board/modify" class="btn btn-secondary mx-1">MODIFY</a>
+            </c:if>
         </div>
     </div>
 </main>

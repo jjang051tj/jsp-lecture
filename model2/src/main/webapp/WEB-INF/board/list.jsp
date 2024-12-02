@@ -28,9 +28,9 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach items="${boardList}" var="boardDto">
+            <c:forEach items="${boardList}" var="boardDto" varStatus="loop">
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">${boardList.size() - loop.index}</th>
                     <td><a href="../board/view?no=${boardDto.no}">${boardDto.title}</a></td>
                     <td>${boardDto.userName}</td>
                     <td>${boardDto.regDate}</td>

@@ -19,7 +19,7 @@ public class BoardList extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BoardDao boardDao = new BoardDao(req.getServletContext());
         List<BoardDto> boardList  = boardDao.getAllBoard();
-        req.setAttribute("boardList", boardList);
+        req.setAttribute("boardList", boardList); //Collection
         req.getRequestDispatcher("/WEB-INF/board/list.jsp").forward(req, resp);
     }
 }
