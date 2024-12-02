@@ -110,4 +110,21 @@ public class BoardDao extends JDBCConnection {
         }
         return result;
     }
+
+    public int modifyBoard(BoardDto boardDto) {
+        int result= 0;
+        try {
+            String sql="UPDATE board SET title = ?,content = ?, regDate = sysdate WHERE no = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, boardDto.getTitle());
+            preparedStatement.setString(2, boardDto.getContent());
+            preparedStatement.setInt(3, boardDto.getNo());
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return result;
+    }
 }

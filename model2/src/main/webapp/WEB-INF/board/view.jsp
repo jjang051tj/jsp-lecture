@@ -44,7 +44,7 @@
             <a href="../board/list" class="btn btn-primary">LIST</a>
             <c:if test="${loggedMemberDto.userId ne null and loggedMemberDto.userId == boardDto.userId}">
                 <a href="../board/delete?no=${boardDto.no}" class="btn btn-danger mx-1">DELETE</a>
-                <a href="../board/modify" class="btn btn-secondary mx-1">MODIFY</a>
+                <a href="../board/modify?no=${boardDto.no}" class="btn btn-secondary mx-1">MODIFY</a>
             </c:if>
         </div>
     </div>
