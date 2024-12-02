@@ -127,4 +127,66 @@ public class BoardDao extends JDBCConnection {
         }
         return result;
     }
+
+    public List<BoardDto> searchBoard(String search) {
+        List<BoardDto> searchBoardList = null;
+
+        try {
+            String sql="select * from board where title like ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%" + search + "%");
+            resultSet = preparedStatement.executeQuery();
+            searchBoardList = new ArrayList<>();
+            while (resultSet.next()) {
+                BoardDto boardDto = new BoardDto();
+                boardDto.setNo(resultSet.getInt("no"));
+                boardDto.setUserId(resultSet.getString("userId"));
+                boardDto.setUserName(resultSet.getString("userName"));
+                boardDto.setTitle(resultSet.getString("title"));
+                boardDto.setContent(resultSet.getString("content"));
+                boardDto.setHit(resultSet.getInt("hit"));
+                boardDto.setRegDate(resultSet.getString("regDate"));
+                searchBoardList.add(boardDto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return searchBoardList;
+    }
+
+    public List<BoardDto> searchBoard(String search, String category) {
+        List<BoardDto> searchBoardList = null;
+        String sql = null;
+        try {
+            if(category.equals("userName")) {
+                sql = "select * from board where userName like ?";
+            } else if(category.equals("title")) {
+                sql = "select * from board where title like ?";
+            } else {
+                sql = "select * from board where content like ?";
+            }
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%" + search + "%");
+            resultSet = preparedStatement.executeQuery();
+            searchBoardList = new ArrayList<>();
+            while (resultSet.next()) {
+                BoardDto boardDto = new BoardDto();
+                boardDto.setNo(resultSet.getInt("no"));
+                boardDto.setUserId(resultSet.getString("userId"));
+                boardDto.setUserName(resultSet.getString("userName"));
+                boardDto.setTitle(resultSet.getString("title"));
+                boardDto.setContent(resultSet.getString("content"));
+                boardDto.setHit(resultSet.getInt("hit"));
+                boardDto.setRegDate(resultSet.getString("regDate"));
+                searchBoardList.add(boardDto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return searchBoardList;
+    }
 }

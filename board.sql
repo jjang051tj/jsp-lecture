@@ -30,6 +30,10 @@ VALUES(seq_board.nextval , 'thejoeun1', '이한새' , '너무춥다' , '12월에
 
 SELECT * FROM board WHERE NO=4;
 SELECT * FROM board;
+SELECT * FROM "MEMBER" m ;
+
+select * from member where userId = 'jjang051' and userPw = '1234';
+
 
 DELETE FROM board WHERE NO=4;
 

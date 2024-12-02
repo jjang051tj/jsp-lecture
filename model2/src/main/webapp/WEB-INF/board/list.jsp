@@ -39,6 +39,18 @@
             </c:forEach>
             </tbody>
         </table>
+
+        <form action="../board/search" method="get" class="my-5">
+            <input type="text" name="search" class="form-control">
+            <select class="form-control" name="category">
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+                <option value="userName">작성자</option>
+            </select>
+            <button class="btn btn-primary">검색</button>
+        </form>
+
+
         <c:if test="${not empty loggedMemberDto}">
             <div class="d-flex justify-content-center my-5">
                 <a href="../board/write" class="btn btn-primary">WRITE</a>
