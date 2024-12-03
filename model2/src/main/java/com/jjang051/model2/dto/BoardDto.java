@@ -1,6 +1,10 @@
 package com.jjang051.model2.dto;
 
 public class BoardDto {
+    private int num;
+
+
+
     private int no;
     private String title;
     private String content;
@@ -14,6 +18,12 @@ public class BoardDto {
     public BoardDto() {
     }
 
+    public int getNum() {
+        return num;
+    }
+    public void setNum(int num) {
+        this.num = num;
+    }
     public int getNo() {
         return no;
     }

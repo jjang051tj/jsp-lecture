@@ -20,22 +20,22 @@
             <tbody>
 
                 <tr>
-                    <th scope="row">제목</th>
-                    <td colspan="3">${boardDto.title}</td>
+                    <th scope="row"   class="p-3">제목</th>
+                    <td colspan="3"   class="p-3">${boardDto.title}</td>
                 <tr>
                 <tr>
-                    <th scope="row">글쓴이</th>
-                    <td colspan="3">${boardDto.userName}</td>
+                    <th scope="row"   class="p-3">글쓴이</th>
+                    <td colspan="3"   class="p-3">${boardDto.userName}</td>
                 <tr>
                 <tr>
-                    <th scope="row">날짜</th>
-                    <td>${boardDto.regDate}</td>
-                    <th scope="row">조회수</th>
-                    <td>${boardDto.hit}</td>
+                    <th scope="row"   class="p-3">날짜</th>
+                    <td   class="p-3">${boardDto.regDate}</td>
+                    <th scope="row"   class="p-3">조회수</th>
+                    <td   class="p-3">${boardDto.hit}</td>
                 <tr>
                 <tr>
-                    <th scope="row">내용</th>
-                    <td colspan="3" style="white-space: pre">${boardDto.content}</td>
+                    <th scope="row"   class="p-3">내용</th>
+                    <td colspan="3" style="white-space: pre"   class="p-3">${boardDto.content}</td>
                 <tr>
             </tbody>
         </table>

@@ -10,6 +10,7 @@
 <main>
     <div class="container">
         <h2 class="my-5">LIST</h2>
+        <p class="text-end">${total}개의 글이 있습니다.</p>
         <table class="table">
             <colgroup>
                 <col style="width:100px;">
@@ -19,35 +20,57 @@
                 <col style="width:50px;">
             </colgroup>
             <thead>
-                <tr>
-                    <th scope="col">NO</th>
-                    <th scope="col">TITLE</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">DATE</th>
-                    <th scope="col">HIT</th>
-                </tr>
+            <tr>
+                <th scope="col" class="text-center p-3">NO</th>
+                <th scope="col" class="p-3">TITLE</th>
+                <th scope="col" class="text-center p-3">NAME</th>
+                <th scope="col" class="text-center p-3">DATE</th>
+                <th scope="col" class="text-center p-3">HIT</th>
+            </tr>
             </thead>
             <tbody>
             <c:forEach items="${boardList}" var="boardDto" varStatus="loop">
                 <tr>
-                    <th scope="row">${boardList.size() - loop.index}</th>
-                    <td><a href="../board/view?no=${boardDto.no}">${boardDto.title}</a></td>
-                    <td>${boardDto.userName}</td>
-                    <td>${boardDto.regDate}</td>
-                    <td>${boardDto.hit}</td>
+                    <th scope="row" class="text-center p-3">${boardList.size() - loop.index}</th>
+                    <td class="p-3"><a href="../board/view?no=${boardDto.no}">${boardDto.title}</a></td>
+                    <td class="text-center p-3">${boardDto.userName}</td>
+                    <td class="text-center p-3">${boardDto.regDate}</td>
+                    <td class="text-center p-3">${boardDto.hit}</td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-
-        <form action="../board/search" method="get" class="my-5">
-            <input type="text" name="search" class="form-control">
-            <select class="form-control" name="category">
-                <option value="title">제목</option>
-                <option value="content">내용</option>
-                <option value="userName">작성자</option>
-            </select>
-            <button class="btn btn-primary">검색</button>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-5">
+                <li class="page-item disabled">
+                    <a class="page-link">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <c:forEach begin="1" end="10" varStatus="loop">
+                    <li class="page-item"><a class="page-link" href="#">${loop.count}</a></li>
+                </c:forEach>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <form action="../board/search" method="get" class="my-5 row gx-2 p-5 border">
+            <div class="col-2">
+                <select class="form-control w-100" name="category">
+                    <option value="title">제목</option>
+                    <option value="content">내용</option>
+                    <option value="userName">작성자</option>
+                </select>
+            </div>
+            <div class="col-8">
+                <input type="text" name="search" class="form-control">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary w-100">검색</button>
+            </div>
         </form>
 
 

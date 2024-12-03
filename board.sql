@@ -40,6 +40,13 @@ DELETE FROM board WHERE NO=4;
 ROLLBACK;
 
 
+SELECT * FROM board WHERE userName like '%고길%';
+
+
+
+
+
+
 
 
 

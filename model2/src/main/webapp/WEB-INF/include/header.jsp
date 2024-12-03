@@ -33,14 +33,14 @@
         <c:choose>
                 <c:when test="${loggedMemberDto ne null}">
                     <div class="col-md-3 text-end">
-                        <a href="../member/info?userId=${loggedMemberDto.userId}" class="btn btn-outline-primary me-2">${loggedMemberDto.userName}</a>
+                        <a href="../member/info?userId=${loggedMemberDto.userId}" class="btn btn-outline-primary">${loggedMemberDto.userName}</a>
                         <a href="../member/logout" class="btn btn-primary">LogOut</a>
                         <a href="../board/list" class="btn btn-primary">Board</a>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="col-md-3 text-end">
-                        <a href="../member/login" class="btn btn-outline-primary me-2">Login</a>
+                        <a href="../member/login" class="btn btn-outline-primary">Login</a>
                         <a href="../member/signup" class="btn btn-primary">Sign-up</a>
                         <a href="../board/list" class="btn btn-primary">Board</a>
                     </div>

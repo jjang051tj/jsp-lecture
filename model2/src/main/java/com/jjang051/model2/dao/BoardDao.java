@@ -160,13 +160,14 @@ public class BoardDao extends JDBCConnection {
         List<BoardDto> searchBoardList = null;
         String sql = null;
         try {
-            if(category.equals("userName")) {
-                sql = "select * from board where userName like ?";
-            } else if(category.equals("title")) {
-                sql = "select * from board where title like ?";
-            } else {
-                sql = "select * from board where content like ?";
-            }
+//            if(category.equals("userName")) {
+//                sql = "select * from board where userName like ?";
+//            } else if(category.equals("title")) {
+//                sql = "select * from board where title like ?";
+//            } else {
+//                sql = "select * from board where content like ?";
+//            }
+            sql = "select * from board where "+category+" like ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, "%" + search + "%");
             resultSet = preparedStatement.executeQuery();
@@ -188,5 +189,56 @@ public class BoardDao extends JDBCConnection {
             close();
         }
         return searchBoardList;
+    }
+
+    public int getTotalCount() {
+        int count = 0;
+        try {
+            String sql = "select count(*) as count from board";
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                count =  resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return count;
+    }
+
+    public List<BoardDto> getPageBoard(int starPage, int endPage) {
+        List<BoardDto> list = null;
+        try {
+            String sql =
+                    "SELECT * FROM (" +
+                            "SELECT rownum AS num, b01.* FROM " +
+                                "(SELECT * FROM board ORDER BY NO desc) b01" +
+                            ")" +
+                            "WHERE num BETWEEN ? AND ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,starPage);
+            preparedStatement.setInt(2,endPage);
+            resultSet = preparedStatement.executeQuery();
+            list = new ArrayList<>();
+            while (resultSet.next()) {
+                BoardDto boardDto = new BoardDto();
+                boardDto.setNum(resultSet.getInt("num"));
+                boardDto.setNo(resultSet.getInt("no"));
+                boardDto.setUserId(resultSet.getString("userId"));
+                boardDto.setUserName(resultSet.getString("userName"));
+                boardDto.setTitle(resultSet.getString("title"));
+                boardDto.setContent(resultSet.getString("content"));
+                boardDto.setHit(resultSet.getInt("hit"));
+                boardDto.setRegDate(resultSet.getString("regDate"));
+                list.add(boardDto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return list;
     }
 }

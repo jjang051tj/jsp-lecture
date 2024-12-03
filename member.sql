@@ -53,6 +53,36 @@ DELETE FROM "MEMBER" m WHERE userId = 'hong' AND userPw = '1234';
 
 ROLLBACK;
 
+SELECT * FROM board;
+
+----------------------
+DECLARE
+	i NUMBER;
+BEGIN
+	FOR	i IN 1..150 LOOP
+		--INSERT INTO board VALUES ()
+		INSERT INTO board VALUES(seq_board.nextval , 
+								'jjang051', 
+								'장성호' || MOD(i,10), 
+								'제목을 씁니다.'|| MOD(i,10), 
+								'내용을 씁니다.'|| MOD(i,10),
+								0,
+								sysdate);
+	END LOOP;
+END;
+SELECT * FROM BOARD b ;
+commit;
+
+
+-- 전체 갯수
+SELECT count(*) FROM board;
+
+
+
+
+
+
+
 
 
 

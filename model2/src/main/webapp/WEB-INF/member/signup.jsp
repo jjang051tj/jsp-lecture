@@ -12,39 +12,65 @@
         <h2 class="mt-5 mb-5">SIGN UP</h2>
         <form action="../member/signup" method="post">
             <div class="mb-3">
-                <label for="userId" class="form-label" >USER ID</label>
-                <input type="text" class="form-control form-control-lg" name="userId" id="userId" placeholder="USER ID">
-                <button class="btn  btn-lg btn-primary" id="btn-duplicate-id">아이디 중복 학인 </button>
+
+                <label for="userId" class="form-label fw-bold fs-5">USER ID</label>
+                <div class="row g-2">
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control" name="userId" id="userId"
+                               placeholder="USER ID">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn  btn btn-primary w-100" id="btn-duplicate-id">아이디 중복 학인</button>
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="userPw" class="form-label" >PASSWORD</label>
-                <input type="text" class="form-control form-control-lg" name="userPw" id="userPw" placeholder="PASSWORD">
+                <label for="userPw" class="form-label fw-bold fs-5">PASSWORD</label>
+                <input type="text" class="form-control form-control" name="userPw" id="userPw"
+                       placeholder="PASSWORD">
             </div>
             <div class="mb-3">
-                <label for="userName" class="form-label" >USER NAME</label>
-                <input type="text" class="form-control form-control-lg" name="userName" id="userName" placeholder="USER NAME">
+                <label for="userName" class="form-label fw-bold fs-5">USER NAME</label>
+                <input type="text" class="form-control form-control" name="userName" id="userName"
+                       placeholder="USER NAME">
             </div>
             <div class="mb-3">
-                <label for="userEmail" class="form-label" >EMAIL</label>
-                <input type="text" class="form-control form-control-lg" name="userEmail" id="userEmail" placeholder="name@example.com">
-                <button class="btn  btn-lg btn-primary" id="btn-duplicate-email">이메일 중복 학인 </button>
+                <label for="userEmail" class="form-label fw-bold fs-5">EMAIL</label>
+                <div class="row g-2">
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control" name="userEmail" id="userEmail"
+                               placeholder="name@example.com">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn  btn btn-primary w-100" id="btn-duplicate-email">이메일 중복 학인</button>
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="zipcode" class="form-label" >ZIPCODE</label>
-                <input type="text" class="form-control form-control-lg" name="zipcode" id="zipcode" placeholder="ZIPCODE">
-                <button class="btn btn-primary" id="btn-zipcode">우편번호 검색</button>
+                <label for="zipcode" class="form-label fw-bold fs-5">ZIPCODE</label>
+                <div class="row g-2">
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control" name="zipcode" id="zipcode"
+                               placeholder="ZIPCODE">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-primary btn w-100" id="btn-zipcode">우편번호 검색</button>
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
-                <label for="addr01" class="form-label" >ADDRESS</label>
-                <input type="text" class="form-control form-control-lg" name="addr01" id="addr01" placeholder="ADDRESS">
+                <label for="addr01" class="form-label fw-bold fs-5">ADDRESS</label>
+                <input type="text" class="form-control form-control" name="addr01" id="addr01"
+                       placeholder="ADDRESS">
             </div>
             <div class="mb-3">
-                <label for="addr02" class="form-label" >DETAIL ADDRESS</label>
-                <input type="text" class="form-control form-control-lg" name="addr02" id="addr02" placeholder="ADDRESS">
+                <label for="addr02" class="form-label fw-bold fs-5">DETAIL ADDRESS</label>
+                <input type="text" class="form-control form-control" name="addr02" id="addr02"
+                       placeholder="ADDRESS">
             </div>
             <div class="mb-3">
-                <label for="addr02" class="form-label" >TEL</label>
-                <input type="text" class="form-control form-control-lg" name="tel" id="tel" placeholder="TEL">
+                <label for="addr02" class="form-label fw-bold fs-5">TEL</label>
+                <input type="text" class="form-control form-control" name="tel" id="tel" placeholder="TEL">
             </div>
             <div class="mt-5">
                 <button class="btn btn-primary">SIGN UP</button>
@@ -56,12 +82,12 @@
     const btnZipcode = document.querySelector("#btn-zipcode");
     const btnDuplicateId = document.querySelector("#btn-duplicate-id");
     const btnDuplicateEmail = document.querySelector("#btn-duplicate-email");
-    const userId =  document.querySelector("#userId");
-    const userEmail =  document.querySelector("#userEmail");
+    const userId = document.querySelector("#userId");
+    const userEmail = document.querySelector("#userEmail");
 
     function execDaumPostcode() {
         new daum.Postcode({
-            oncomplete: function(data) {
+            oncomplete: function (data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -77,18 +103,18 @@
                 }
 
                 // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
+                if (data.userSelectedType === 'R') {
                     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                         extraAddr += data.bname;
                     }
                     // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
                     // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
+                    if (extraAddr !== '') {
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
@@ -105,32 +131,33 @@
             }
         }).open();
     }
-    btnZipcode.addEventListener("click",(e)=>{
+
+    btnZipcode.addEventListener("click", (e) => {
         e.preventDefault();
         execDaumPostcode();
     });
 
-    btnDuplicateId.addEventListener("click",(e)=>{
+    btnDuplicateId.addEventListener("click", (e) => {
 
         e.preventDefault();
         e.stopImmediatePropagation(); //이벤트 전파 막기
-        fetch("../member/id-check?userId="+userId.value)
-            .then(response=>response.json())
-            .then(json=>{
+        fetch("../member/id-check?userId=" + userId.value)
+            .then(response => response.json())
+            .then(json => {
                 console.log(json);
-                if(json.result>0) {
+                if (json.result > 0) {
                     alert("쓸 수 없는 아이디입니다. 다시 확인해 주세요");
-                    userId.value="";
+                    userId.value = "";
                     userId.focus();
                 }
             })
     });
-    btnDuplicateEmail.addEventListener("click",(e)=>{
+    btnDuplicateEmail.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
-        fetch("../member/email-check?userEmail="+userEmail.value)
-            .then(response=>response.json())
-            .then(json=>{
+        fetch("../member/email-check?userEmail=" + userEmail.value)
+            .then(response => response.json())
+            .then(json => {
                 console.log(json);
             })
     })

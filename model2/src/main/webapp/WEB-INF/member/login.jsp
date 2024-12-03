@@ -9,8 +9,8 @@
 <%@ include file="../include/header.jsp"%>
 <main class="form-signin w-100 m-auto">
     <form action="../member/login" method="post">
-        <img class="mb-4" src="../images/bootstrap-logo.svg" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <img class="mt-4" src="../images/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h2 class="h3 my-5 fw-bold">Please sign in</h2>
 
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="name@example.com"
