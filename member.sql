@@ -64,8 +64,8 @@ BEGIN
 		INSERT INTO board VALUES(seq_board.nextval , 
 								'jjang051', 
 								'장성호' || MOD(i,10), 
-								'제목을 씁니다.'|| MOD(i,10), 
-								'내용을 씁니다.'|| MOD(i,10),
+								'제목을 씁니다.'|| i, 
+								'내용을 씁니다.'|| i,
 								0,
 								sysdate);
 	END LOOP;
@@ -74,11 +74,29 @@ SELECT * FROM BOARD b ;
 commit;
 
 
--- 전체 갯수
+-- 전체 갯수 150
 SELECT count(*) FROM board;
+-- 한페이지에 보여질 게시글 수 10
+-- 페이지네이션의 수 15 
+-- 페이지네이션에서 한번에 보여질 페이지 수 3
+-- 전체 페이지의 수 5
+-- 페이지네이션의 수 15 / 페이지네이션에서 한번에 보여질 페이지 수 3
+-- 만약 나우어 떨어지면 갯수 그대로 쓰면 됨
+-- 그렇지 않으면 올려줘야 한다.
 
+-- 
+SELECT * FROM (
+SELECT rownum AS num, b01.* FROM 
+	(SELECT * FROM board ORDER BY NO desc) b01
+) WHERE num BETWEEN 1 AND 10;
 
+WHERE rownum BETWEEN 1 AND 10;
 
+SELECT * FROM (
+	SELECT rownum AS num ,b01.* FROM 
+		(SELECT * FROM board ORDER BY NO DESC) b01
+	) 
+WHERE num BETWEEN 1 AND 10;
 
 
 

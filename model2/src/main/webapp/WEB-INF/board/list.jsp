@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <c:forEach begin="1" end="10" varStatus="loop">
-                    <li class="page-item"><a class="page-link" href="#">${loop.count}</a></li>
+                    <li class="page-item"><a class="page-link" href="../board/list?startPage=${loop.count}">${loop.count}</a></li>
                 </c:forEach>
                 <li class="page-item">
                     <a class="page-link" href="#">

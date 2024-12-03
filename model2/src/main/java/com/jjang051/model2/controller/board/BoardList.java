@@ -19,10 +19,15 @@ public class BoardList extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BoardDao boardDao = new BoardDao(req.getServletContext());
         BoardDao pageBoardDao = new BoardDao(req.getServletContext());
+        int listPerPage = 10;
+        int startPage = req.getParameter("startPage") == null ? 1 : Integer.parseInt(req.getParameter("startPage"));
+        int endPage = startPage + listPerPage;
+        //1   1~10
+        //2   11~20
         int total = pageBoardDao.getTotalCount();
-        System.out.println("total==="+total);
-        //List<BoardDto> boardList  = boardDao.getAllBoard();
-        List<BoardDto> boardList  = boardDao.getPageBoard(1,10);
+        int serverStartPage = (startPage-1)*listPerPage + 1;  //1, 11
+        int serverEndPage =  startPage*listPerPage;
+        List<BoardDto> boardList  = boardDao.getPageBoard(serverStartPage,serverEndPage);
         req.setAttribute("boardList", boardList); //Collection
         req.setAttribute("total", total);
         req.getRequestDispatcher("/WEB-INF/board/list.jsp").forward(req, resp);
