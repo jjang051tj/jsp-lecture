@@ -31,7 +31,7 @@
             <tbody>
             <c:forEach items="${boardList}" var="boardDto" varStatus="loop">
                 <tr>
-                    <th scope="row" class="text-center p-3">${boardList.size() - loop.index}</th>
+                    <th scope="row" class="text-center p-3">${total - boardDto.num + 1}</th>
                     <td class="p-3"><a href="../board/view?no=${boardDto.no}">${boardDto.title}</a></td>
                     <td class="text-center p-3">${boardDto.userName}</td>
                     <td class="text-center p-3">${boardDto.regDate}</td>
@@ -42,21 +42,30 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mt-5">
-                <li class="page-item disabled">
+                <li class="page-item">
                     <a class="page-link">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <c:forEach begin="${serverStartPagination}" end="${serverEndPagination}" varStatus="loop">
-                    <li class="page-item"><a class="page-link" href="../board/list?page=${loop.count}">${loop.count}</a></li>
+                <c:forEach begin="${serverStartPagination}" end="${serverEndPagination}" varStatus="loop" var="page" >
+                    <c:choose>
+                        <c:when test="${param.page eq page}">
+                            <li class="page-item active"><a class="page-link" href="../board/list?page=${page}">${page}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item"><a class="page-link" href="../board/list?page=${page}">${page}</a></li>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
                 <li class="page-item">
-                    <a class="page-link" href="#">
+                    <a class="page-link" href="../board/list?page=${serverNextPagination}">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
             </ul>
+
         </nav>
+        <h2>${serverStartPagination} / ${serverEndPagination} / ${serverEndPagination} </h2>
         <form action="../board/search" method="get" class="my-5 row gx-2 p-5 border">
             <div class="col-2">
                 <select class="form-control w-100" name="category">
