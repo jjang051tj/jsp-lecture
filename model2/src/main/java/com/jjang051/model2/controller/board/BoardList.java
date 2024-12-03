@@ -34,6 +34,8 @@ public class BoardList extends HttpServlet {
         int serverStartPagination = ((page - 1) / listPerPagination) * listPerPagination + 1;  //1~5 =  1 , 6~10  =  6, 11~15 = 11
         int serverEndPagination = serverStartPagination + listPerPagination - 1;
         int serverNextPagination = serverStartPagination + listPerPagination;
+        int serverPrevPagination = serverStartPagination - 1;
+
         if (serverNextPagination >= totalPagination) {
             serverNextPagination = totalPagination;
 
@@ -47,9 +49,11 @@ public class BoardList extends HttpServlet {
         req.setAttribute("total", total);
 
         //req.setAttribute("totalPagination", totalPagination);
+        req.setAttribute("serverPrevPagination", serverPrevPagination);
         req.setAttribute("serverStartPagination", serverStartPagination); //1 == 1~5 , 2 == 6~10
         req.setAttribute("serverEndPagination", serverEndPagination);
         req.setAttribute("serverNextPagination", serverNextPagination);
+        req.setAttribute("totalPagination", totalPagination);
 
 
         req.getRequestDispatcher("/WEB-INF/board/list.jsp").forward(req, resp);

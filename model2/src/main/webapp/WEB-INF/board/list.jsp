@@ -42,11 +42,18 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mt-5">
-                <li class="page-item">
-                    <a class="page-link">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
+                <c:if test="${serverStartPagination != 1}">
+                    <li class="page-item">
+                        <a class="page-link" href="../board/list?page=${serverPrevPagination}">
+                            <i class="bi bi-chevron-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="../board/list?page=${serverPrevPagination}">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                </c:if>
                 <c:forEach begin="${serverStartPagination}" end="${serverEndPagination}" varStatus="loop" var="page" >
                     <c:choose>
                         <c:when test="${param.page eq page}">
@@ -57,11 +64,18 @@
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
-                <li class="page-item">
-                    <a class="page-link" href="../board/list?page=${serverNextPagination}">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+                <c:if test="${serverEndPagination != totalPagination}">
+                    <li class="page-item">
+                        <a class="page-link" href="../board/list?page=${serverNextPagination}">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="../board/list?page=${serverNextPagination}">
+                            <i class="bi bi-chevron-double-right"></i>
+                        </a>
+                    </li>
+                </c:if>
             </ul>
 
         </nav>
