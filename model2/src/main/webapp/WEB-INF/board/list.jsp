@@ -44,13 +44,13 @@
             <ul class="pagination justify-content-center mt-5">
                 <c:if test="${serverStartPagination != 1}">
                     <li class="page-item">
-                        <a class="page-link" href="../board/list?page=${serverPrevPagination}">
-                            <i class="bi bi-chevron-double-left"></i>
+                        <a class="page-link" href="../board/list?page=1">
+                            <i class="bi bi-chevron-double-left fs-4"></i>
                         </a>
                     </li>
                     <li class="page-item">
                         <a class="page-link" href="../board/list?page=${serverPrevPagination}">
-                            <i class="bi bi-chevron-left"></i>
+                            <i class="bi bi-chevron-left fs-4"></i>
                         </a>
                     </li>
                 </c:if>
@@ -67,12 +67,12 @@
                 <c:if test="${serverEndPagination != totalPagination}">
                     <li class="page-item">
                         <a class="page-link" href="../board/list?page=${serverNextPagination}">
-                            <i class="bi bi-chevron-right"></i>
+                            <i class="bi bi-chevron-right fs-4"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="../board/list?page=${serverNextPagination}">
-                            <i class="bi bi-chevron-double-right"></i>
+                        <a class="page-link" href="../board/list?page=${totalPagination}">
+                            <i class="bi bi-chevron-double-right fs-4"></i>
                         </a>
                     </li>
                 </c:if>
