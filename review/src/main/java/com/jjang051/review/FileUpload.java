@@ -8,7 +8,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @WebServlet("/file-upload")
@@ -32,13 +38,21 @@ public class FileUpload  extends HttpServlet {
         //String[] partHeaderArray = partHeader.split("filename=");
         //String originalFileName = partHeaderArray[1].replace("\"","");
         String originalFileName = filePart.getSubmittedFileName();
-        System.out.println("originalFileName==="+originalFileName);
+
         String extention = originalFileName.substring(originalFileName.lastIndexOf(".")+1);
         String extractFileName = originalFileName.substring(0,originalFileName.lastIndexOf("."));
         UUID uuid = UUID.randomUUID();
+        String now =  new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         String uuidStr = uuid.toString();
-        String renameFileName = extractFileName+"-"+uuidStr+"."+extention;
+        String renameFileName = extractFileName+"-"+now+"."+extention;
         System.out.println("originalFileName==="+originalFileName);
         System.out.println("renameFileName==="+renameFileName);
+
+        String saveDirectory =  getServletContext().getRealPath("")+ File.separator+"upload";
+        Path uploadPath = Paths.get(saveDirectory);
+        System.out.println("saveDirectory==="+saveDirectory);
+        if(!Files.exists(uploadPath )) {
+            Files.createDirectories(uploadPath);
+        }
     }
 }
