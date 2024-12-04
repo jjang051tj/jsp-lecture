@@ -118,5 +118,12 @@ NOCYCLE
 CACHE 20;
 
 
+SELECT * FROM faq;
+INSERT INTO faq values(faq_seq.nextval,'오늘 점심 뭐에요','안가르쳐줘',sysdate);
+
+ROLLBACK;
+
+
+
 
 
