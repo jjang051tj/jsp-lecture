@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 @WebServlet("/gugudan")
 public class Gugudan extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int num =  req.getParameter("num")==null ? 1 : Integer.parseInt(req.getParameter("num"));
