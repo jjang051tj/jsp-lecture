@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
         //loginMemberDto.setUserId(userId);
         //loginMemberDto.setUserPw(userPw);
         //memberDao.loginMember(loginMemberDto);
-        MemberDto loggedMemberDto = memberDao.loginMember(new LoginMemberDto(userId, userPw));
+        MemberDto loggedMemberDto = memberDao.bcryptLoginMember(new LoginMemberDto(userId, userPw));
         if(loggedMemberDto!=null) {
             if(rememberMe!=null) {
                 CookieManager.makeCookie(resp, "rememberMe", userId, 60 * 60 * 24 * 30);

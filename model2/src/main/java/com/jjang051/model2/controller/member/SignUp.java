@@ -11,6 +11,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +59,17 @@ public class SignUp extends HttpServlet {
         }
 
         Path newFile =  Paths.get(saveDirectory+File.separator+renameProfile);
+
         Files.copy(filePart.getInputStream(),newFile, StandardCopyOption.REPLACE_EXISTING);
+
+        Thumbnails.of(newFile.toFile())
+                .size(100,100)
+                .keepAspectRatio(true) // default
+                .toFile(newFile.toFile());
+
+        String salt = BCrypt.gensalt(); // 같은 비밀번호를 쓰더라도 소금쳐서 다르게 나오게 만들기
+        userPw = BCrypt.hashpw(userPw, salt);
+
 
         MemberDto insertMemberDto = new MemberDto();
         insertMemberDto.setUserId(userId);

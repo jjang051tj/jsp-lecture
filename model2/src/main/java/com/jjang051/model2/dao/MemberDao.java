@@ -4,6 +4,7 @@ import com.jjang051.model2.common.JDBCConnection;
 import com.jjang051.model2.dto.LoginMemberDto;
 import com.jjang051.model2.dto.MemberDto;
 import jakarta.servlet.ServletContext;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
 
@@ -28,6 +29,33 @@ public class MemberDao extends JDBCConnection {
                 memberDto.setRegDate(resultSet.getString("regDate"));
                 memberDto.setTel(resultSet.getString("tel"));
                 memberDto.setRenameProfile(resultSet.getString("renameProfile"));
+            }
+            System.out.println("login success");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return memberDto;
+    }
+    public MemberDto bcryptLoginMember(LoginMemberDto loginMemberDto) {
+        MemberDto memberDto = null;
+        try {
+            String sql = "select * from member where userId=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, loginMemberDto.getUserId());
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                String decodePassword = resultSet.getString("userPw");
+                if(BCrypt.checkpw(loginMemberDto.getUserPw(),decodePassword)){
+                    memberDto = new MemberDto();
+                    memberDto.setUserId(resultSet.getString("userId"));
+                    memberDto.setUserName(resultSet.getString("userName"));
+                    memberDto.setAddress(resultSet.getString("address"));
+                    memberDto.setRegDate(resultSet.getString("regDate"));
+                    memberDto.setTel(resultSet.getString("tel"));
+                    memberDto.setRenameProfile(resultSet.getString("renameProfile"));
+                }
             }
             System.out.println("login success");
         } catch (SQLException e) {
