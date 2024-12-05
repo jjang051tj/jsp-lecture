@@ -154,19 +154,22 @@ public class MemberDao extends JDBCConnection {
     public MemberDto passwordCheck(String userId, String userPw) {
         MemberDto memberDto = null;
         try {
-            String sql = "select * from member where userId = ? and userPw = ?";
+            String sql = "select * from member where userId = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, userId);
-            preparedStatement.setString(2, userPw);
+            //preparedStatement.setString(2, userPw);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
-                memberDto = new MemberDto();
-                memberDto.setUserId(resultSet.getString("userId"));
-                memberDto.setUserName(resultSet.getString("userName"));
-                memberDto.setUserEmail(resultSet.getString("userEmail"));
-                memberDto.setAddress(resultSet.getString("address"));
-                memberDto.setTel(resultSet.getString("tel"));
-                memberDto.setZipcode(resultSet.getString("zipcode"));
+                String decodePw = resultSet.getString("userPw");
+                if(BCrypt.checkpw(userPw,decodePw)) {
+                    memberDto = new MemberDto();
+                    memberDto.setUserId(resultSet.getString("userId"));
+                    memberDto.setUserName(resultSet.getString("userName"));
+                    memberDto.setUserEmail(resultSet.getString("userEmail"));
+                    memberDto.setAddress(resultSet.getString("address"));
+                    memberDto.setTel(resultSet.getString("tel"));
+                    memberDto.setZipcode(resultSet.getString("zipcode"));
+                }
             }
 
         } catch (SQLException e) {
@@ -200,11 +203,19 @@ public class MemberDao extends JDBCConnection {
     public int deleteMember(String userId, String userPw) {
         int result = 0;
         try {
-            String sql = "delete from member where userId = ? and userPw = ?";
-            preparedStatement = connection.prepareStatement(sql);
+            String selectSql = "select * from member where userid = ?";
+            preparedStatement = connection.prepareStatement(selectSql);
             preparedStatement.setString(1, userId);
-            preparedStatement.setString(2, userPw);
-            result = preparedStatement.executeUpdate();
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                String decodePw = resultSet.getString("userpw");
+                if(BCrypt.checkpw(userPw,decodePw)) {
+                    String sql = "delete from member where userId = ?";
+                    preparedStatement = connection.prepareStatement(sql);
+                    preparedStatement.setString(1, userId);
+                    result = preparedStatement.executeUpdate();
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

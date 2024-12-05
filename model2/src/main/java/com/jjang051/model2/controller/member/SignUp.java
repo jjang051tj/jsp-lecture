@@ -70,6 +70,8 @@ public class SignUp extends HttpServlet {
         String salt = BCrypt.gensalt(); // 같은 비밀번호를 쓰더라도 소금쳐서 다르게 나오게 만들기
         userPw = BCrypt.hashpw(userPw, salt);
 
+        //Files.delete();
+
 
         MemberDto insertMemberDto = new MemberDto();
         insertMemberDto.setUserId(userId);

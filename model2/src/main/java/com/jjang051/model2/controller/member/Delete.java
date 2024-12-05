@@ -11,6 +11,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @WebServlet("/member/delete")
 public class Delete extends HttpServlet {
@@ -32,7 +35,11 @@ public class Delete extends HttpServlet {
         MemberDao memberDao = new MemberDao(req.getServletContext());
         int result = memberDao.deleteMember(userId,userPw);
         if(result>0) {
+            MemberDto memberDto = (MemberDto) session.getAttribute("loggedMemberDto");
+            String renameProfile = memberDto.getRenameProfile();
             session.invalidate();
+            Path path = Paths.get(req.getServletContext().getRealPath("")+"/upload/"+renameProfile);
+            Files.deleteIfExists(path);
             JSFunction.alertAndLocation("회원탈퇴되었습니다.", "../index/index", resp);
         } else {
             JSFunction.alertAndBack("아이디 패스워드 확인해주세요.",  resp);
