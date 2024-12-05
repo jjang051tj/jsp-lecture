@@ -10,7 +10,8 @@ public class MemberDto {
     private String zipcode;
     private String address;
     private String regDate;
-
+    private String originalProfile;
+    private String renameProfile;
     public MemberDto() {
     }
 
@@ -91,6 +92,22 @@ public class MemberDto {
         this.regDate = regDate;
     }
 
+    public String getOriginalProfile() {
+        return originalProfile;
+    }
+
+    public void setOriginalProfile(String originalProfile) {
+        this.originalProfile = originalProfile;
+    }
+
+    public String getRenameProfile() {
+        return renameProfile;
+    }
+
+    public void setRenameProfile(String renameProfile) {
+        this.renameProfile = renameProfile;
+    }
+
     @Override
     public String toString() {
         return "MemberDto{" +
@@ -103,6 +120,8 @@ public class MemberDto {
                 ", zipcode='" + zipcode + '\'' +
                 ", address='" + address + '\'' +
                 ", regDate='" + regDate + '\'' +
+                ", originalProfile='" + originalProfile + '\'' +
+                ", renameProfile='" + renameProfile + '\'' +
                 '}';
     }
 }

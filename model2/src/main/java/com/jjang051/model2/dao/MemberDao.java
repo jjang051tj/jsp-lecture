@@ -27,6 +27,7 @@ public class MemberDao extends JDBCConnection {
                 memberDto.setAddress(resultSet.getString("address"));
                 memberDto.setRegDate(resultSet.getString("regDate"));
                 memberDto.setTel(resultSet.getString("tel"));
+                memberDto.setRenameProfile(resultSet.getString("renameProfile"));
             }
             System.out.println("login success");
         } catch (SQLException e) {
@@ -39,7 +40,7 @@ public class MemberDao extends JDBCConnection {
     public int insertMember(MemberDto memberDto) {
         int result=0;
         try {
-            String sql = "INSERT INTO MEMBER VALUES (seq_member.nextval,?,?,?,?,?,?,?,sysdate)";
+            String sql = "INSERT INTO MEMBER VALUES (seq_member.nextval,?,?,?,?,?,?,?,?,?,sysdate)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, memberDto.getUserId());
             preparedStatement.setString(2, memberDto.getUserPw());
@@ -48,6 +49,8 @@ public class MemberDao extends JDBCConnection {
             preparedStatement.setInt(5, Integer.parseInt(memberDto.getZipcode()));
             preparedStatement.setString(6, memberDto.getAddress());
             preparedStatement.setString(7, memberDto.getTel());
+            preparedStatement.setString(8, memberDto.getOriginalProfile());
+            preparedStatement.setString(9, memberDto.getRenameProfile());
             result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

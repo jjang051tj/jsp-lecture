@@ -66,13 +66,16 @@ public class SignUp extends HttpServlet {
         insertMemberDto.setZipcode(zipcode);
         insertMemberDto.setAddress(addr01 + "/" + addr02);
         insertMemberDto.setTel(tel);
+        insertMemberDto.setOriginalProfile(originalProfile);
+        insertMemberDto.setRenameProfile(renameProfile);
 
-//        MemberDao memberDao = new MemberDao(req.getServletContext());
-//        int result = memberDao.insertMember(insertMemberDto);
-//        if (result > 0) {
-//            JSFunction.alertAndLocation("회원가입되었습니다. 로그인 페이지로 이동합니다.", "../member/login", resp);
-//        } else {
-//            JSFunction.alertAndBack("알 수 없는 오류가 발생되었습니다. 다시 입력해 주세요..", resp);
-//        }
+
+        MemberDao memberDao = new MemberDao(req.getServletContext());
+        int result = memberDao.insertMember(insertMemberDto);
+        if (result > 0) {
+            JSFunction.alertAndLocation("회원가입되었습니다. 로그인 페이지로 이동합니다.", "../member/login", resp);
+        } else {
+            JSFunction.alertAndBack("알 수 없는 오류가 발생되었습니다. 다시 입력해 주세요..", resp);
+        }
     }
 }
