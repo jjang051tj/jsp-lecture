@@ -10,7 +10,7 @@
 <main>
     <div class="container">
         <h2 class="mt-5 mb-5">SIGN UP</h2>
-        <form action="../member/signup" method="post">
+        <form action="../member/signup" method="post" enctype="multipart/form-data">
             <div class="mb-3">
 
                 <label for="userId" class="form-label fw-bold fs-5">USER ID</label>
@@ -71,6 +71,10 @@
             <div class="mb-3">
                 <label for="addr02" class="form-label fw-bold fs-5">TEL</label>
                 <input type="text" class="form-control form-control" name="tel" id="tel" placeholder="TEL">
+            </div>
+            <div class="mb-3">
+                <label for="profile" class="form-label fw-bold fs-5">PROFILE</label>
+                <input type="file" class="form-control form-control" name="profile" id="profile" placeholder="profile">
             </div>
             <div class="mt-5">
                 <button class="btn btn-primary">SIGN UP</button>

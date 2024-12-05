@@ -3,15 +3,17 @@
 DROP TABLE MEMBER;
 
 CREATE TABLE MEMBER (
-   no         number,
-   userId     varchar2(100) PRIMARY KEY,
-   userPw     varchar2(100),
-   userName   varchar2(100),
-   userEmail  varchar2(100) unique,
-   zipcode    number,
-   address    varchar2(300),
-   tel        varchar2(13),
-   regDate DATE
+   no                     number,
+   userId                 varchar2(100) PRIMARY KEY,
+   userPw                 varchar2(100),
+   userName               varchar2(100),
+   userEmail              varchar2(100) unique,
+   zipcode                number,
+   address                varchar2(300),
+   tel                    varchar2(13),
+   originalProfile        varchar2(500),
+   renameProfile          varchar2(500),
+   regDate                DATE
 );
 SELECT * FROM "MEMBER" ;
 

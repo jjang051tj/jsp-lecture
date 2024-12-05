@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -52,9 +53,11 @@ public class FileUpload  extends HttpServlet {
         if(!Files.exists(uploadPath )) {
             Files.createDirectories(uploadPath);
         }
-        filePart.write(uploadPath+File.separator+originalFileName);
-        File oldFile = new File(saveDirectory+File.separator+originalFileName);
-        File newFile = new File(saveDirectory+File.separator+renameFileName);
-        oldFile.renameTo(newFile);
+        //filePart.write(uploadPath+File.separator+originalFileName);
+
+        Path oldFile = Paths.get(saveDirectory+File.separator+originalFileName);
+        Path newFile = Paths.get(saveDirectory+File.separator+renameFileName);
+        Files.copy(filePart.getInputStream(), newFile, StandardCopyOption.REPLACE_EXISTING);
+        //oldFile.renameTo(newFile);
     }
 }
