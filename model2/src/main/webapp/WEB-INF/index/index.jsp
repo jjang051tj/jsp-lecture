@@ -13,14 +13,12 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <c:forEach begin="1" end="5">
+            <c:forEach begin="1" end="5" items="${visualDtoList}" var="item">
                 <div class="swiper-slide">
-                    <img src="../images/main/slide01.jpg" class="img">
+                    <img src="${pageContext.request.contextPath}/upload/${item.renameFile}" class="img">
                     <div class="txt-box">
-                        <p class="main-txt">MERRY X-MAS</p>
-                        <p class="sub-txt">
-                            Have a happy Christmas!!!
-                        </p>
+                        <p class="main-txt">${item.mainTxt}</p>
+                        <p class="sub-txt">${item.subTxt}</p>
                     </div>
                 </div>
             </c:forEach>

@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label for="sub-txt" class="form-label fw-bold fs-5">SUB MESSAGE</label>
-            <input type="text" class="form-control form-control" name="main-txt" id="sub-txt"
+            <input type="text" class="form-control form-control" name="sub-txt" id="sub-txt"
                    placeholder="write sub message">
         </div>
         <div class="mb-3">
