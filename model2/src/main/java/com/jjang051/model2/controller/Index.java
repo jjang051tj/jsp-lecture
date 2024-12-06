@@ -18,11 +18,17 @@ public class Index extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        VisualDao visualDao = new VisualDao(req.getServletContext());
-        List<VisualDto> visualDtoList = visualDao.getAllVisual();
 
+        VisualDao visualDao = new VisualDao(req.getServletContext());
+        List<VisualDto> visualDtoList = visualDao.getCheckedAllVisual();
         req.setAttribute("visualDtoList", visualDtoList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index/index.jsp");
         dispatcher.forward(req, resp);
+//        String checkList[] = req.getParameterValues("check");
+//        VisualDao visualDao = new VisualDao(req.getServletContext());
+//        List<VisualDto> visualDtoList = visualDao.getCheckedVisual(checkList);
+//        req.setAttribute("visualDtoList", visualDtoList);
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/index/index.jsp");
+//        dispatcher.forward(req, resp);
     }
 }

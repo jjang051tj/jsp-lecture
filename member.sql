@@ -146,6 +146,7 @@ CREATE TABLE visual(
    subTxt varchar2(500),
    originalvisual varchar2(500),
    renamevisual varchar2(500),
+   isshow varchar2(10),
    regDate date
 );
 
@@ -166,5 +167,9 @@ VALUES (seq_visual.nextval, 'maintxt', 'subtxt','orgVs','reVs');
 SELECT * FROM visual;
 
 ROLLBACK;
+
+SELECT * FROM visual WHERE NO IN (3,4,5);
+
+UPDATE visual SET isShow = 'blind' WHERE NO IN (9,10);
 
 

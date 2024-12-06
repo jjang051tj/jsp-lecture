@@ -11,13 +11,13 @@
     <div class="container">
         <h2 class="my-5">LIST</h2>
         <p class="text-end">${total}개의 visual이 있습니다.</p>
-        <form action="../board/list" method="post">
+        <form action="../main/list" method="post">
             <table class="table main-visual-table">
                 <colgroup>
                     <col style="width:100px;">
                     <col>
-                    <col style="width:150px;">
-                    <col style="width:250px;">
+                    <col style="width:500px;">
+                    <col style="width:350px;">
                     <col style="width:50px;">
                 </colgroup>
                 <thead>
@@ -26,7 +26,7 @@
                     <th scope="col" class="p-3">VISUAL</th>
                     <th scope="col" class="text-center p-3">MAIN-MESSAGE</th>
                     <th scope="col" class="text-center p-3">SUB-MESSAGE</th>
-                    <th scope="col" class="text-center p-3"><input type="checkbox"></th>
+                    <th scope="col" class="text-center p-3"><input type="checkbox" id="all-check" class="form-check-input"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@
                                              class="img"></td>
                         <td class="text-center p-3">${visualDto.mainTxt}</td>
                         <td class="text-center p-3">${visualDto.subTxt}</td>
-                        <td class="text-center p-3"><input type="checkbox"></td>
+                        <td class="text-center p-3"><input type="checkbox" name="check" class="form-check-input" value="${visualDto.no}"></td>
                     </tr>
                 </c:forEach>
                 </tbody>

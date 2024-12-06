@@ -24,4 +24,19 @@ public class ListSlider extends HttpServlet {
         req.setAttribute("total", visualDtoList.size());
         req.getRequestDispatcher("/WEB-INF/main/list.jsp").forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String checkList[] = req.getParameterValues("check");
+        VisualDao visualDao = new VisualDao(req.getServletContext());
+        int result = visualDao.getCheckedVisual(checkList);
+        if(result > 0){
+            resp.sendRedirect("../index/index");
+        }
+        /*
+        for (int i = 0; i < checkList.length; i++) {
+            System.out.print(checkList[i]+",");
+        }
+         */
+    }
 }

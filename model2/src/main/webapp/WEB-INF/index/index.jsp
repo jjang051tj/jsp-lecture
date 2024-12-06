@@ -13,7 +13,7 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <c:forEach begin="1" end="5" items="${visualDtoList}" var="item">
+            <c:forEach items="${visualDtoList}" var="item">
                 <div class="swiper-slide">
                     <img src="${pageContext.request.contextPath}/upload/${item.renameFile}" class="img">
                     <div class="txt-box">

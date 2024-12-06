@@ -14,5 +14,6 @@ public class VisualDto {
     private String subTxt;
     private String originalFile;
     private String renameFile;
+    private String isShow;
     private String regDate;
 }
