@@ -13,9 +13,9 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide"><img src="../images/main/slide01.jpg" class="img"></div>
+            <div class="swiper-slide"><img src="../images/main/slide02.jpg" class="img"></div>
+            <div class="swiper-slide"><img src="../images/main/slide03.jpg" class="img"></div>
         </div>
     </div>
 </main>
