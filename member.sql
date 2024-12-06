@@ -131,3 +131,8 @@ DELETE FROM MEMBER;
 COMMIT;
 SELECT * FROM MEMBER;
 
+
+SELECT * FROM board where title LIKE '%ck%';
+
+
+

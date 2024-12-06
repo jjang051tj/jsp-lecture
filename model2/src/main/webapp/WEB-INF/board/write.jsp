@@ -11,12 +11,12 @@
     <div class="container">
         <h2 class="my-5">LIST</h2>
         <form action="../board/write" method="post">
-            <div class="mb-3">
-                <label for="title" class="form-label" >TITLE</label>
+            <div class="mb-5">
+                <label for="title" class="form-label fw-bold fs-5" >TITLE</label>
                 <input type="text" class="form-control form-control-lg" name="title" id="title" placeholder="제목을 입력하세요.">
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">CONTENT</label>
+                <label for="content" class="form-label fw-bold fs-5">CONTENT</label>
                 <textarea class="form-control" id="content" name="content" rows="8"></textarea>
             </div>
             <input type="hidden" name="userId" value="${loggedMemberDto.userId}">
