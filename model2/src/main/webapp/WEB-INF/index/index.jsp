@@ -13,9 +13,18 @@
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide"><img src="../images/main/slide01.jpg" class="img"></div>
-            <div class="swiper-slide"><img src="../images/main/slide02.jpg" class="img"></div>
-            <div class="swiper-slide"><img src="../images/main/slide03.jpg" class="img"></div>
+            <c:forEach begin="1" end="5">
+                <div class="swiper-slide">
+                    <img src="../images/main/slide01.jpg" class="img">
+                    <div class="txt-box">
+                        <p class="main-txt">MERRY X-MAS</p>
+                        <p class="sub-txt">
+                            Have a happy Christmas!!!
+                        </p>
+                    </div>
+                </div>
+            </c:forEach>
+
         </div>
     </div>
 </main>

@@ -136,3 +136,35 @@ SELECT * FROM board where title LIKE '%ck%';
 
 
 
+
+---------------------
+DROP TABLE visual;
+
+CREATE TABLE visual(
+   NO NUMBER PRIMARY KEY,
+   mainTxt varchar2(500),
+   subTxt varchar2(500),
+   originalvisual varchar2(500),
+   renamevisual varchar2(500),
+   regDate date
+);
+
+SELECT * FROM visual;
+
+
+CREATE SEQUENCE seq_visual
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 99999999
+MINVALUE 1
+nocycle
+cache 20;
+
+INSERT INTO visual
+VALUES (seq_visual.nextval, 'maintxt', 'subtxt','orgVs','reVs');
+
+SELECT * FROM visual;
+
+ROLLBACK;
+
+

@@ -37,3 +37,24 @@
 .main-visual .img {
     width:100%;
 }
+.main-visual .txt-box  {
+    position: absolute;
+    bottom: 150px;
+    right:100px;
+    color:#fff;
+}
+.main-visual .txt-box .main-txt  {
+    font-size: 32px;
+}
+.main-visual .txt-box .sub-txt  {
+    font-size: 18px;
+}
+#preview img {
+    height:100px;
+    width:100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+
+
