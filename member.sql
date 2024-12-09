@@ -172,4 +172,32 @@ SELECT * FROM visual WHERE NO IN (3,4,5);
 
 UPDATE visual SET isShow = 'blind' WHERE NO IN (9,10);
 
+UPDATE visual SET isShow = 'show';
+COMMIT;
+
+--replyboard sql
+
+-- no,title,content,userId,userName,password,regroup,relevel,restep,hit,regdate,available
+
+CREATE TABLE replyboard (
+	NO         NUMBER PRIMARY KEY,
+	title      varchar2(500) NOT NULL,
+	content    varchar2(3500) NOT NULL,
+	userid     varchar2(100) NOT NULL,
+	username     varchar2(100),
+	password   varchar2(100) NOT NULL,
+	regroup    NUMBER,
+	relevel    NUMBER,
+	restep     NUMBER,
+	hit        NUMBER DEFAULT 0,
+	regdate    DATE,
+	available  varchar2(10)
+);
+
+SELECT * FROM replyboard;
+
+
+
+
+
 
