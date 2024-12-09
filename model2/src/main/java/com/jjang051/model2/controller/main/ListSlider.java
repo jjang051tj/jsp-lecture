@@ -30,9 +30,7 @@ public class ListSlider extends HttpServlet {
         String checkList[] = req.getParameterValues("check");
         VisualDao visualDao = new VisualDao(req.getServletContext());
         int result = visualDao.getCheckedVisual(checkList);
-        if(result > 0){
-            resp.sendRedirect("../index/index");
-        }
+        resp.sendRedirect("../index/index");
         /*
         for (int i = 0; i < checkList.length; i++) {
             System.out.print(checkList[i]+",");

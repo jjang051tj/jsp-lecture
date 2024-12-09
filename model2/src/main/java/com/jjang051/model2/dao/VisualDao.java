@@ -12,16 +12,17 @@ public class VisualDao extends JDBCConnection {
     public VisualDao(ServletContext application) {
         super(application);
     }
+
     public int insertVisual(VisualDto visualDto) {
         int result = 0;
 
         try {
             String sql = "insert into visual values(seq_visual.nextval,?,?,?,?,'show',sysdate)";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,visualDto.getMainTxt());
-            preparedStatement.setString(2,visualDto.getSubTxt());
-            preparedStatement.setString(3,visualDto.getOriginalFile());
-            preparedStatement.setString(4,visualDto.getRenameFile());
+            preparedStatement.setString(1, visualDto.getMainTxt());
+            preparedStatement.setString(2, visualDto.getSubTxt());
+            preparedStatement.setString(3, visualDto.getOriginalFile());
+            preparedStatement.setString(4, visualDto.getRenameFile());
             result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -43,7 +44,7 @@ public class VisualDao extends JDBCConnection {
                                 .mainTxt(resultSet.getString("mainTxt"))
                                 .subTxt(resultSet.getString("subTxt"))
                                 .renameFile(resultSet.getString("renamevisual"))
-                        .build();
+                                .build();
                 visualDtoList.add(visualDto);
             }
         } catch (SQLException e) {
@@ -53,6 +54,7 @@ public class VisualDao extends JDBCConnection {
         }
         return visualDtoList;
     }
+
     public List<VisualDto> getCheckedAllVisual() {
         List<VisualDto> visualDtoList = null;
         try {
@@ -83,26 +85,39 @@ public class VisualDao extends JDBCConnection {
         //List<VisualDto> visualDtoList = null;
         //String sql = "select * from visual where no in (?,?,?,?)";
         //UPDATE visual SET isShow = 'blind' WHERE NO IN (9,10);
-        StringBuilder stringBuilder = new StringBuilder("UPDATE visual SET isShow = 'blind' WHERE NO IN (");
-        for(int i=0;i<checkList.length;i++){
-            stringBuilder.append("?");
-            if(i<checkList.length-1){
-                stringBuilder.append(",");
+
+        if (checkList != null && checkList.length > 0) {
+            StringBuilder stringBuilder = new StringBuilder("UPDATE visual SET isShow = 'blind' WHERE NO IN (");
+            for (int i = 0; i < checkList.length; i++) {
+                stringBuilder.append("?");
+                if (i < checkList.length - 1) {
+                    stringBuilder.append(",");
+                }
             }
-        }
-        stringBuilder.append(")");
-        String sql = stringBuilder.toString();
-        System.out.println("sql:" + sql);
-        try {
-            preparedStatement = connection.prepareStatement(sql);
-            for(int i=0;i<checkList.length;i++){
-                preparedStatement.setString(i+1, checkList[i]);
+            stringBuilder.append(")");
+            String sql = stringBuilder.toString();
+            System.out.println("sql:" + sql);
+            try {
+                preparedStatement = connection.prepareStatement(sql);
+                for (int i = 0; i < checkList.length; i++) {
+                    preparedStatement.setString(i + 1, checkList[i]);
+                }
+                result = preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                close();
             }
-            result = preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            close();
+        } else {
+            try {
+                String showSql = "UPDATE visual SET isShow = 'show'";
+                preparedStatement = connection.prepareStatement(showSql);
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } finally {
+                close();
+            }
         }
         return result;
     }
