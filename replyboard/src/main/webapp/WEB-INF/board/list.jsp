@@ -19,6 +19,7 @@
         <col style="width:50px;">
     </colgroup>
     <thead>
+
     <tr>
         <th scope="col" class="text-center p-3">NO</th>
         <th scope="col" class="p-3">TITLE</th>
@@ -28,14 +29,15 @@
     </tr>
     </thead>
     <tbody>
-
-    <tr>
-        <th scope="row" class="text-center p-3">1</th>
-        <td class="p-3"><a href="../board/view">제목</a></td>
-        <td class="text-center p-3">장성호</td>
-        <td class="text-center p-3">2024-12-09 11:10:15</td>
-        <td class="text-center p-3">0</td>
-    </tr>
+    <c:forEach items="${replyBoardList}" var="item">
+        <tr>
+            <th scope="row" class="text-center p-3">1</th>
+            <td class="p-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../board/view?no=${item.no}">${item.title}</a></td>
+            <td class="text-center p-3">${item.userName}</td>
+            <td class="text-center p-3">${item.regDate}</td>
+            <td class="text-center p-3">${item.hit}</td>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
 <div class="d-flex justify-content-center my-5">

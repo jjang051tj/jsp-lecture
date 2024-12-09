@@ -206,13 +206,23 @@ MINVALUE 1
 nocycle
 cache 20;
 
-SELECT * FROM replyboard;
+SELECT * FROM replyboard ORDER BY regdate;
 
-SELECT max(regroup) AS max FROM replyboard;  --제일 큰 숫자 찾아서 1더하면 된다.
+SELECT * FROM replyboard ORDER BY regroup DESC, relevel asc;
+
+UPDATE replyboard SET relevel = relevel+1 WHERE regroup=3 AND relevel >= 0;
+
+DELETE FROM replyboard WHERE NO IN (10);
+
+COMMIT;
+
+SELECT nvl(max(regroup),0) AS max FROM replyboard;  --제일 큰 숫자 찾아서 1더하면 된다.
+
+DELETE FROM replyboard;
 
 
-
- 
+SELECT rownum AS num, b01.* from
+ (SELECT * FROM replyboard ORDER BY regroup DESC , relevel ASC) b01; 
 
 
 
