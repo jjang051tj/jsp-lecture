@@ -161,6 +161,8 @@ MINVALUE 1
 nocycle
 cache 20;
 
+
+
 INSERT INTO visual
 VALUES (seq_visual.nextval, 'maintxt', 'subtxt','orgVs','reVs');
 
@@ -179,6 +181,8 @@ COMMIT;
 
 -- no,title,content,userId,userName,password,regroup,relevel,restep,hit,regdate,available
 
+DROP TABLE replyboard;
+
 CREATE TABLE replyboard (
 	NO         NUMBER PRIMARY KEY,
 	title      varchar2(500) NOT NULL,
@@ -191,11 +195,24 @@ CREATE TABLE replyboard (
 	restep     NUMBER,
 	hit        NUMBER DEFAULT 0,
 	regdate    DATE,
-	available  varchar2(10)
+	available  NUMBER 
 );
+
+CREATE SEQUENCE seq_reply_board
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 99999999
+MINVALUE 1
+nocycle
+cache 20;
 
 SELECT * FROM replyboard;
 
+SELECT max(regroup) AS max FROM replyboard;  --제일 큰 숫자 찾아서 1더하면 된다.
+
+
+
+ 
 
 
 
