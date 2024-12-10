@@ -188,14 +188,15 @@ CREATE TABLE replyboard (
 	title      varchar2(500) NOT NULL,
 	content    varchar2(3500) NOT NULL,
 	userid     varchar2(100) NOT NULL,
-	username     varchar2(100),
+	username   varchar2(100),
 	password   varchar2(100) NOT NULL,
 	regroup    NUMBER,
 	relevel    NUMBER,
 	restep     NUMBER,
 	hit        NUMBER DEFAULT 0,
 	regdate    DATE,
-	available  NUMBER 
+	available  NUMBER ,
+	parentid   NUMBER DEFAULT 0
 );
 
 CREATE SEQUENCE seq_reply_board
@@ -224,6 +225,13 @@ DELETE FROM replyboard;
 SELECT rownum AS num, b01.* from
  (SELECT * FROM replyboard ORDER BY regroup DESC , relevel ASC) b01; 
 
+
+SELECT * FROM replyboard;
+DELETE FROM REPLYBOARD  WHERE regroup = 3;
+ROLLBACK;
+
+DELETE FROM replyboard WHERE password = '1111' AND NO = 16;
+DELETE FROM replyboard WHERE regroup = 3;
 
 
 

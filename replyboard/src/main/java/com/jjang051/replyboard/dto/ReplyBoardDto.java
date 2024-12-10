@@ -24,4 +24,5 @@ public class ReplyBoardDto {
     private int hit;
     private String regDate;
     private int available;
+    private int parentId;
 }

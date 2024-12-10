@@ -50,6 +50,7 @@ public class BoardReply extends HttpServlet {
                         .regroup(Integer.parseInt(req.getParameter("regroup")))
                         .relevel(Integer.parseInt(req.getParameter("relevel"))+1)
                         .restep(Integer.parseInt(req.getParameter("restep"))+1)
+                        .parentId(Integer.parseInt(req.getParameter("parentId")))
                         .build();
         BoardDao boardDao = new BoardDao(req.getServletContext());
         int result = boardDao.replyBoard(replyBoardDto);

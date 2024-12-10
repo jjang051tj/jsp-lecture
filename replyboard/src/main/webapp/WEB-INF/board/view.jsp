@@ -42,7 +42,9 @@
         <div class="d-flex justify-content-center my-5">
             <%--            <span>${loggedMemberDto.userId} / ${replyBoardDto.userId}</span>--%>
             <a href="../board/list" class="btn btn-primary">LIST</a>
-            <a href="../board/reply?no=${replyBoardDto.no}" class="btn btn-primary">REPLY</a>
+            <a href="../board/reply?no=${replyBoardDto.no}" class="btn btn-primary mx-1">REPLY</a>
+            <a href="../board/delete?regroup=${replyBoardDto.regroup}" class="btn btn-primary mx-1">HARD DELETE</a>
+            <a href="../board/delete?no=${replyBoardDto.no}" class="btn btn-primary mx-1">SOFT DELETE</a>
         </div>
     </div>
 </main>

@@ -32,7 +32,12 @@
     <c:forEach items="${replyBoardList}" var="item">
         <tr>
             <th scope="row" class="text-center p-3">1</th>
-            <td class="p-3"><a href="../board/view?no=${item.no}" class="step step${item.restep}">${item.title}</a></td>
+            <td class="p-3">
+                <a href="../board/view?no=${item.no}" class="step step${item.restep}">
+                    <c:if test="${item.restep > 0}"><i class="bi bi-arrow-return-right"></i></c:if>
+                    <span>${item.title}</span>
+                </a>
+            </td>
             <td class="text-center p-3">${item.userName}</td>
             <td class="text-center p-3">${item.regDate}</td>
             <td class="text-center p-3">${item.hit}</td>

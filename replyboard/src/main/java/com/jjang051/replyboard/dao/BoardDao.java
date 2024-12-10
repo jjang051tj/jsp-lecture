@@ -15,7 +15,7 @@ public class BoardDao extends JDBCConnection {
     public int writeBoard(ReplyBoardDto replyBoardDto) {
         int result = 0;
         try {
-            String sql = "insert into replyboard values(seq_reply_board.nextval,?,?,?,?,?,?,0,0,1,sysdate,1)";
+            String sql = "insert into replyboard values(seq_reply_board.nextval,?,?,?,?,?,?,0,0,1,sysdate,1,0)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, replyBoardDto.getTitle());
             preparedStatement.setString(2, replyBoardDto.getContent());
@@ -130,7 +130,7 @@ public class BoardDao extends JDBCConnection {
     public int replyBoard(ReplyBoardDto replyBoardDto) {
         int result = 0;
         try {
-            String sql = "insert into replyboard values(seq_reply_board.nextval,?,?,?,?,?,?,?,?,1,sysdate,1)";
+            String sql = "insert into replyboard values(seq_reply_board.nextval,?,?,?,?,?,?,?,?,1,sysdate,1,?)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, replyBoardDto.getTitle());
             preparedStatement.setString(2, replyBoardDto.getContent());
@@ -140,12 +140,20 @@ public class BoardDao extends JDBCConnection {
             preparedStatement.setInt(6, replyBoardDto.getRegroup());
             preparedStatement.setInt(7, replyBoardDto.getRelevel());
             preparedStatement.setInt(8, replyBoardDto.getRestep());
+            preparedStatement.setInt(9, replyBoardDto.getParentId());
             result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             close();
         }
+        return result;
+    }
+
+    public int hardDeleteBoard(String password, int regroup) {
+        int result = 0;
+        String sql = "DELETE FROM replyboard WHERE regroup = ? AND password = ?";
+
         return result;
     }
 }
