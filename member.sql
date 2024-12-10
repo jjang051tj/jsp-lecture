@@ -233,6 +233,15 @@ ROLLBACK;
 DELETE FROM replyboard WHERE password = '1111' AND NO = 16;
 DELETE FROM replyboard WHERE regroup = 3;
 
+-- 1. 쓴 글이 원글이면 
+DELETE FROM replyboard WHERE password = '1234' AND NO = 28;
+DELETE FROM replyboard WHERE parentId=28;
 
+--2. 쓴 글이 답들이면
+DELETE FROM replyboard WHERE password = '1234' AND NO = 31;
+
+COMMIT;
+
+DELETE FROM replyboard;
 
 

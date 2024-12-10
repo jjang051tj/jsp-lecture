@@ -100,6 +100,7 @@ public class BoardDao extends JDBCConnection {
                         .hit(resultSet.getInt("hit"))
                         .available(resultSet.getInt("available"))
                         .regDate(resultSet.getString("regDate"))
+                        .parentId(resultSet.getInt("parentId"))
                         .build();
             }
         } catch (SQLException e) {
@@ -150,10 +151,46 @@ public class BoardDao extends JDBCConnection {
         return result;
     }
 
-    public int hardDeleteBoard(String password, int regroup) {
-        int result = 0;
-        String sql = "DELETE FROM replyboard WHERE regroup = ? AND password = ?";
+    private int getparentId(int no,String password) {
+        int parentId = 0;
+        try {
+            String sql = "SELECT parentId FROM replyboard WHERE no = ? AND password = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, no);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                parentId = resultSet.getInt("parentId");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return parentId;
+    }
 
+    public int hardDeleteBoard(String password,int parentId, int no) {
+
+        int result = 0;
+        System.out.println("parentId==="+parentId);
+
+        try {
+            String originalDeleteSql = "DELETE FROM replyboard WHERE no = ? AND password = ?";
+            preparedStatement = connection.prepareStatement(originalDeleteSql);
+            preparedStatement.setInt(1, no);
+            preparedStatement.setString(2, password);
+            int originalDeleteResult = preparedStatement.executeUpdate();
+            if(parentId==0 && originalDeleteResult > 0) {
+                String sql = "DELETE FROM replyboard WHERE parentId = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, no);
+                result = preparedStatement.executeUpdate();
+                System.out.println("all delete success");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
         return result;
     }
 }

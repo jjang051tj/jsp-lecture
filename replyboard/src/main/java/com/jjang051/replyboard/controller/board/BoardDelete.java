@@ -21,9 +21,9 @@ public class BoardDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BoardDao boardDao = new BoardDao(req.getServletContext());
-        int regroup = Integer.parseInt(req.getParameter("regroup"));
-        System.out.println("regroup==="+regroup);
+        int parentId =  Integer.parseInt(req.getParameter("parentId"));
+        int no =  Integer.parseInt(req.getParameter("no"));
         String password = req.getParameter("password");
-        boardDao.hardDeleteBoard(password,regroup);
+        boardDao.hardDeleteBoard(password,parentId,no);
     }
 }
