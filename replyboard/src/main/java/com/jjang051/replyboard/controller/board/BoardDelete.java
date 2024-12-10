@@ -21,9 +21,19 @@ public class BoardDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BoardDao boardDao = new BoardDao(req.getServletContext());
-        int parentId =  Integer.parseInt(req.getParameter("parentId"));
-        int no =  Integer.parseInt(req.getParameter("no"));
-        String password = req.getParameter("password");
-        boardDao.hardDeleteBoard(password,parentId,no);
+        if(req.getParameter("parentId")!=null && !req.getParameter("parentId").equals("")){
+            int parentId =  Integer.parseInt(req.getParameter("parentId"));
+            int no =  Integer.parseInt(req.getParameter("no"));
+            String password = req.getParameter("password");
+            if(boardDao.hardDeleteBoard(password,parentId,no)>0) {
+                resp.sendRedirect("../board/list");
+            }
+        } else {
+            int no =  Integer.parseInt(req.getParameter("no"));
+            String password = req.getParameter("password");
+            if(boardDao.softDeleteBoard(password,no)>0) {
+                resp.sendRedirect("../board/list");
+            }
+        }
     }
 }

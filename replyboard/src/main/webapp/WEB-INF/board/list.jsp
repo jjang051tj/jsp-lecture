@@ -33,10 +33,20 @@
         <tr>
             <th scope="row" class="text-center p-3">1</th>
             <td class="p-3">
-                <a href="../board/view?no=${item.no}" class="step step${item.restep}">
-                    <c:if test="${item.restep > 0}"><i class="bi bi-arrow-return-right"></i></c:if>
-                    <span>${item.title}</span>
-                </a>
+                <c:choose>
+                    <c:when test="${item.available > 0}">
+                        <a href="../board/view?no=${item.no}" class="step step${item.restep}">
+                            <c:if test="${item.restep > 0}"><i class="bi bi-arrow-return-right"></i></c:if>
+                            <span>${item.title}</span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <span  class="step step${item.restep}" >
+                            <c:if test="${item.restep > 0}"><i class="bi bi-arrow-return-right"></i></c:if>
+                            <span>삭제된 글입니다.</span>
+                        </span>
+                    </c:otherwise>
+                </c:choose>
             </td>
             <td class="text-center p-3">${item.userName}</td>
             <td class="text-center p-3">${item.regDate}</td>

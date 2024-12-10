@@ -193,4 +193,20 @@ public class BoardDao extends JDBCConnection {
         }
         return result;
     }
+
+    public int softDeleteBoard(String password, int no) {
+        int result = 0;
+        try {
+            String originalDeleteSql = "update replyboard set available = 0 WHERE no = ? AND password = ?";
+            preparedStatement = connection.prepareStatement(originalDeleteSql);
+            preparedStatement.setInt(1, no);
+            preparedStatement.setString(2, password);
+            result = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return result;
+    }
 }

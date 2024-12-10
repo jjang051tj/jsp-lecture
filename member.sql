@@ -242,6 +242,12 @@ DELETE FROM replyboard WHERE password = '1234' AND NO = 31;
 
 COMMIT;
 
+SELECT * FROM REPLYBOARD r ;
+
 DELETE FROM replyboard;
+
+DELETE FROM replyboard WHERE parentId=80;
+
+ROLLBACK;
 
 
