@@ -243,6 +243,7 @@ public class BoardDao extends JDBCConnection {
                         .available(resultSet.getInt("available"))
                         .regDate(resultSet.getString("regDate"))
                         .parentId(resultSet.getInt("parentId"))
+                        .num(resultSet.getInt("num"))
                         .build();
             }
         } catch (SQLException e) {
