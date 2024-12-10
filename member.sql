@@ -250,4 +250,34 @@ DELETE FROM replyboard WHERE parentId=80;
 
 ROLLBACK;
 
+SELECT * FROM 
+(SELECT rownum AS num ,b01.* from
+	(SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b01)
+WHERE num = 1;
+
+
+DECLARE
+	i NUMBER;
+BEGIN
+	FOR	i IN 1..150 LOOP
+		--INSERT INTO board VALUES ()
+		INSERT INTO replyboard VALUES(
+								seq_reply_board.nextval , 
+								'제목을 씁니다.'|| i, 
+								'내용을 씁니다.'|| i,
+								'jjang051',
+								'장성호' || MOD(i,10),
+								'1234',
+								i,
+								0,
+								0,
+								0,
+								sysdate,
+								1,
+								0
+							);
+	END LOOP;
+END;
+SELECT * FROM replyboard b ;
+commit;
 

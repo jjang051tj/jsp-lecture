@@ -26,7 +26,14 @@ public class BoardView extends HttpServlet {
         } else {
             no =  Integer.parseInt(req.getParameter("no"));
         }
+        int num =  Integer.parseInt(req.getParameter("num"));
         ReplyBoardDto replyBoardDto =boardDao.getBoard(no);
+        BoardDao prevBoardDao = new BoardDao(req.getServletContext());
+        ReplyBoardDto prevReplyBoardDto = prevBoardDao.getPrevNextSelect(num-1);
+        BoardDao nextBoardDao = new BoardDao(req.getServletContext());
+        ReplyBoardDto nextReplyBoardDto = nextBoardDao.getPrevNextSelect(num+1);
+        req.setAttribute("prevReplyBoardDto", prevReplyBoardDto);
+        req.setAttribute("nextReplyBoardDto", nextReplyBoardDto);
         req.setAttribute("replyBoardDto", replyBoardDto);
         req.getRequestDispatcher("/WEB-INF/board/view.jsp").forward(req, resp);
     }

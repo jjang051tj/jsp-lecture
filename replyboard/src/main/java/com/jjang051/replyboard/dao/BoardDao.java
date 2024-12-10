@@ -52,24 +52,29 @@ public class BoardDao extends JDBCConnection {
         List<ReplyBoardDto> replyBoardList = null;
 
         try {
-            String sql = "SELECT * FROM replyboard ORDER BY regroup DESC, relevel asc";
+            String sql = "SELECT * FROM " +
+                            "(SELECT rownum AS num ,b01.* from " +
+                                "(SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b01)";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             replyBoardList = new ArrayList<>();
             while (resultSet.next()) {
-                ReplyBoardDto replyBoardDto = ReplyBoardDto.builder()
-                        .no(resultSet.getInt("no"))
-                        .title(resultSet.getString("title"))
-                        .content(resultSet.getString("content"))
-                        .userId(resultSet.getString("userId"))
-                        .userName(resultSet.getString("userName"))
-                        .regroup(resultSet.getInt("regroup"))
-                        .relevel(resultSet.getInt("relevel"))
-                        .restep(resultSet.getInt("restep"))
-                        .hit(resultSet.getInt("hit"))
-                        .available(resultSet.getInt("available"))
-                        .regDate(resultSet.getString("regDate"))
-                        .build();
+                ReplyBoardDto replyBoardDto =
+                        ReplyBoardDto.builder()
+                                .no(resultSet.getInt("no"))
+                                .title(resultSet.getString("title"))
+                                .content(resultSet.getString("content"))
+                                .userId(resultSet.getString("userId"))
+                                .userName(resultSet.getString("userName"))
+                                .regroup(resultSet.getInt("regroup"))
+                                .relevel(resultSet.getInt("relevel"))
+                                .restep(resultSet.getInt("restep"))
+                                .hit(resultSet.getInt("hit"))
+                                .available(resultSet.getInt("available"))
+                                .regDate(resultSet.getString("regDate"))
+                                .parentId(resultSet.getInt("parentId"))
+                                .num(resultSet.getInt("num"))
+                                .build();
                 replyBoardList.add(replyBoardDto);
             }
         } catch (SQLException e) {
@@ -83,7 +88,10 @@ public class BoardDao extends JDBCConnection {
     public ReplyBoardDto getBoard(int no) {
         ReplyBoardDto replyBoardDto = null;
         try {
-            String sql = "SELECT * FROM replyboard WHERE no = ?";
+            String sql = "SELECT * FROM " +
+                    "(SELECT rownum AS num,b01.* from" +
+                    "(SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b01)" +
+                    "WHERE no = ?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, no);
             resultSet = preparedStatement.executeQuery();
@@ -101,6 +109,7 @@ public class BoardDao extends JDBCConnection {
                         .available(resultSet.getInt("available"))
                         .regDate(resultSet.getString("regDate"))
                         .parentId(resultSet.getInt("parentId"))
+                        .num(resultSet.getInt("num"))
                         .build();
             }
         } catch (SQLException e) {
@@ -208,5 +217,39 @@ public class BoardDao extends JDBCConnection {
             close();
         }
         return result;
+    }
+    public ReplyBoardDto getPrevNextSelect(int num) {
+        ReplyBoardDto replyBoardDto = null;
+
+        try {
+            String sql = "SELECT * FROM " +
+                    "(SELECT rownum AS num ,b01.* from" +
+                    "(SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b01)" +
+                    "WHERE num = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, num);
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                replyBoardDto = ReplyBoardDto.builder()
+                        .no(resultSet.getInt("no"))
+                        .title(resultSet.getString("title"))
+                        .content(resultSet.getString("content"))
+                        .userId(resultSet.getString("userId"))
+                        .userName(resultSet.getString("userName"))
+                        .regroup(resultSet.getInt("regroup"))
+                        .relevel(resultSet.getInt("relevel"))
+                        .restep(resultSet.getInt("restep"))
+                        .hit(resultSet.getInt("hit"))
+                        .available(resultSet.getInt("available"))
+                        .regDate(resultSet.getString("regDate"))
+                        .parentId(resultSet.getInt("parentId"))
+                        .build();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            close();
+        }
+        return replyBoardDto;
     }
 }

@@ -35,7 +35,7 @@
             <td class="p-3">
                 <c:choose>
                     <c:when test="${item.available > 0}">
-                        <a href="../board/view?no=${item.no}" class="step step${item.restep}">
+                        <a href="../board/view?no=${item.no}&num=${item.num}" class="step step${item.restep}">
                             <c:if test="${item.restep > 0}"><i class="bi bi-arrow-return-right"></i></c:if>
                             <span>${item.title}</span>
                         </a>
