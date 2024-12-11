@@ -1,6 +1,7 @@
 package com.jjang051.replyboard.mybatis;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -20,5 +21,11 @@ public class MybatisConnectionFactory {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static SqlSession getSqlSession() {
+        return sqlSessionFactory.openSession(true);
+    }
+    public static SqlSession getSqlSession(boolean isAutoCommit) {
+        return sqlSessionFactory.openSession(isAutoCommit);
     }
 }

@@ -15,7 +15,7 @@ public class MemberDto {
     private String userName;
     private String userEmail;
     private String tel;
-    private String zipcode;
+    private int zipcode;
     private String address;
     private String regDate;
     private String originalProfile;
