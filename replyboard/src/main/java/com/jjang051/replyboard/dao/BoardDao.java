@@ -1,8 +1,11 @@
 package com.jjang051.replyboard.dao;
 
 import com.jjang051.replyboard.common.JDBCConnection;
+import com.jjang051.replyboard.dto.PageDto;
 import com.jjang051.replyboard.dto.ReplyBoardDto;
+import com.jjang051.replyboard.mybatis.MybatisConnectionFactory;
 import jakarta.servlet.ServletContext;
+import org.apache.ibatis.session.SqlSession;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,6 +51,15 @@ public class BoardDao extends JDBCConnection {
         return result;
     }
 
+    public List<ReplyBoardDto> getAllList(PageDto pageDto) {
+        List<ReplyBoardDto> replyBoardList = null;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        replyBoardList = sqlSession.selectList("getAllBoard",pageDto);
+        sqlSession.close();
+        return replyBoardList;
+    }
+
+    /*
     public List<ReplyBoardDto> getAllList() {
         List<ReplyBoardDto> replyBoardList = null;
 
@@ -84,6 +96,7 @@ public class BoardDao extends JDBCConnection {
         }
         return replyBoardList;
     }
+     */
 
     public ReplyBoardDto getBoard(int no) {
         ReplyBoardDto replyBoardDto = null;

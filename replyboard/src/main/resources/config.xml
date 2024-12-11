@@ -6,6 +6,9 @@
     <properties resource="db.properties"></properties>
     <typeAliases>
         <typeAlias alias="MemberDto" type="com.jjang051.replyboard.dto.MemberDto"></typeAlias>
+        <typeAlias alias="ReplyBoardDto" type="com.jjang051.replyboard.dto.ReplyBoardDto"></typeAlias>
+        <typeAlias alias="PageDto" type="com.jjang051.replyboard.dto.PageDto"></typeAlias>
+
     </typeAliases>
     <environments default="development">
         <environment id="development">
