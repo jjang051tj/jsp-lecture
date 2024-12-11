@@ -11,8 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SearchDto {
     private String keyword;
-    //private PageDto pageDto;
-    private int startPage;
-    private int endPage;
+    private String category;
+    private PageDto pageDto;
+//    private int startPage;
+//    private int endPage;
 
 }

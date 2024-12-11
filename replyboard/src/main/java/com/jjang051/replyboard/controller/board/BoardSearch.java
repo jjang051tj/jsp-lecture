@@ -21,9 +21,11 @@ public class BoardSearch extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BoardDao boardDao = new BoardDao(req.getServletContext());
         SearchDto searchDto = new SearchDto();
-        searchDto.setStartPage(1);
-        searchDto.setEndPage(10);
-        searchDto.setKeyword("14");
+        //searchDto.setStartPage(1);
+        //searchDto.setEndPage(10);
+        searchDto.setCategory("userName");
+        searchDto.setPageDto(new PageDto(1,20));
+        searchDto.setKeyword("장성호5");
         List<ReplyBoardDto> searchBoardList = boardDao.setSearchList(searchDto);
         req.setAttribute("searchBoardList", searchBoardList);
         req.getRequestDispatcher("/WEB-INF/board/search.jsp").forward(req, resp);
