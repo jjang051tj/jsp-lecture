@@ -18,10 +18,8 @@
     <link rel="stylesheet" href="../css/layout.css">
     <script src="../js/swiper-bundle.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.umd.js" crossorigin></script>
-    <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 
-
-    <script src="https://cdn.ckbox.io/ckbox/2.6.1/ckbox.js" crossorigin></script>
+<%--    <script src="https://cdn.ckbox.io/ckbox/2.6.1/ckbox.js" crossorigin></script>--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
