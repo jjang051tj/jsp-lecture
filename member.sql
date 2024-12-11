@@ -248,6 +248,9 @@ DELETE FROM replyboard;
 
 DELETE FROM replyboard WHERE parentId=80;
 
+SELECT * FROM MEMBER;
+
+
 ROLLBACK;
 
 SELECT * FROM 
@@ -278,6 +281,23 @@ BEGIN
 							);
 	END LOOP;
 END;
+
+rollback;
+
+
 SELECT * FROM replyboard b ;
 commit;
 
+SELECT * FROM "MEMBER" m ;
+
+DELETE FROM "MEMBER" m ;
+
+
+
+SELECT * FROM replyboard;
+
+
+select * from
+        (select rownum as num , b01.* from
+            (select * from replyboard order by regroup desc, relevel asc) b01)
+        where num > 0 and num < 10;

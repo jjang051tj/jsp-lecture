@@ -15,4 +15,15 @@
                 (select * from replyboard order by regroup desc, relevel asc) b01)
         where num between #{startPage} and #{endPage}
     </select>
+
+    <select id="getAllSearch" resultType="ReplyBoardDto" parameterType="SearchDto">
+        select * from
+            (select rownum as num , b01.* from
+                (select * from replyboard
+<!--                    where title like '%'||#{keyword}||'%'-->
+                    where title like concat(concat('%',#{keyword}),'%')
+                    order by regroup desc, relevel asc)
+                b01)
+        where num between #{startPage} and #{endPage}
+    </select>
 </mapper>

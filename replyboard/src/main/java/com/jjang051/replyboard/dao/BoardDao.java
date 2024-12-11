@@ -3,6 +3,7 @@ package com.jjang051.replyboard.dao;
 import com.jjang051.replyboard.common.JDBCConnection;
 import com.jjang051.replyboard.dto.PageDto;
 import com.jjang051.replyboard.dto.ReplyBoardDto;
+import com.jjang051.replyboard.dto.SearchDto;
 import com.jjang051.replyboard.mybatis.MybatisConnectionFactory;
 import jakarta.servlet.ServletContext;
 import org.apache.ibatis.session.SqlSession;
@@ -265,5 +266,13 @@ public class BoardDao extends JDBCConnection {
             close();
         }
         return replyBoardDto;
+    }
+
+    public List<ReplyBoardDto> setSearchList(SearchDto searchDto) {
+        List<ReplyBoardDto> searchList = null;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        searchList = sqlSession.selectList("getAllSearch", searchDto);
+        sqlSession.close();
+        return searchList;
     }
 }

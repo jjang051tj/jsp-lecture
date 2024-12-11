@@ -8,6 +8,8 @@
         <typeAlias alias="MemberDto" type="com.jjang051.replyboard.dto.MemberDto"></typeAlias>
         <typeAlias alias="ReplyBoardDto" type="com.jjang051.replyboard.dto.ReplyBoardDto"></typeAlias>
         <typeAlias alias="PageDto" type="com.jjang051.replyboard.dto.PageDto"></typeAlias>
+        <typeAlias alias="SearchDto" type="com.jjang051.replyboard.dto.SearchDto"></typeAlias>
+
 
     </typeAliases>
     <environments default="development">
