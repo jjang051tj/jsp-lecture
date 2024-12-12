@@ -55,17 +55,30 @@
     </c:forEach>
     </tbody>
 </table>
+<!--
+../board/search?category=title&page=1&search=장성호
+../board/list?page=1
+-->
+<c:choose>
+    <c:when test="${param.search != null}">
+        <c:set var="link" value="../board/search?search=${param.search}&category=${param.category}"></c:set>
+    </c:when>
+    <c:otherwise>
+        <c:set var="link" value="../board/list?"></c:set>
+    </c:otherwise>
+</c:choose>
+
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-5">
         <c:if test="${serverStartPagination != 1}">
             <li class="page-item">
-                <a class="page-link" href="../board/list?page=1">
+                <a class="page-link" href="${link}?page=1">
                     <i class="bi bi-chevron-double-left fs-4"></i>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="../board/list?page=${serverPrevPagination}">
+                <a class="page-link" href="${link}&page=${serverPrevPagination}">
                     <i class="bi bi-chevron-left fs-4"></i>
                 </a>
             </li>
@@ -73,21 +86,21 @@
         <c:forEach begin="${serverStartPagination}" end="${serverEndPagination}" varStatus="loop" var="page" >
             <c:choose>
                 <c:when test="${param.page eq page}">
-                    <li class="page-item active"><a class="page-link" href="../board/list?page=${page}">${page}</a></li>
+                    <li class="page-item active"><a class="page-link" href="${link}&page=${page}">${page}</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li class="page-item"><a class="page-link" href="../board/list?page=${page}">${page}</a></li>
+                    <li class="page-item"><a class="page-link" href="${link}&page=${page}">${page}</a></li>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
         <c:if test="${serverEndPagination != totalPagination}">
             <li class="page-item">
-                <a class="page-link" href="../board/list?page=${serverNextPagination}">
+                <a class="page-link" href="${link}&page=${serverNextPagination}">
                     <i class="bi bi-chevron-right fs-4"></i>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="../board/list?page=${totalPagination}">
+                <a class="page-link" href="${link}?page=${totalPagination}">
                     <i class="bi bi-chevron-double-right fs-4"></i>
                 </a>
             </li>

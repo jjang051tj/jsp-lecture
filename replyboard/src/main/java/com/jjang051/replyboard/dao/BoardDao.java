@@ -348,4 +348,12 @@ public class BoardDao extends JDBCConnection {
         sqlSession.close();
         return totalCount;
     }
+    public int getSearchTotalCount(SearchDto searchDto) {
+        int totalCount = 0;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        totalCount = sqlSession.selectOne("getSearchTotalCount",searchDto);
+        sqlSession.close();
+        return totalCount;
+    }
+
 }

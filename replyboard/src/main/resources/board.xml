@@ -69,7 +69,7 @@
     <select id="getTotalCount" resultType="int">
         select count(*) as total from replyboard
     </select>
-    <select id="getSearchTotalCount" resultType="int">
+    <select id="getSearchTotalCount" resultType="int" parameterType="SearchDto">
         select count(*) as total from replyboard
         where
         <include refid="search"></include>
