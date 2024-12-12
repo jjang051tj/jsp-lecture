@@ -10,7 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BoardDao extends JDBCConnection {
     public BoardDao(ServletContext application) {
@@ -52,10 +54,20 @@ public class BoardDao extends JDBCConnection {
         return result;
     }
 
+    public List<ReplyBoardDto> getAllList(Map pageMap) {
+        List<ReplyBoardDto> replyBoardList = null;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        replyBoardList = sqlSession.selectList("getAllBoard",pageMap);
+        sqlSession.close();
+        return replyBoardList;
+    }
     public List<ReplyBoardDto> getAllList(PageDto pageDto) {
         List<ReplyBoardDto> replyBoardList = null;
         SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
-        replyBoardList = sqlSession.selectList("getAllBoard",pageDto);
+        Map<String,Integer> pageMap = new HashMap<>();
+        pageMap.put("startPage",1);
+        pageMap.put("endPage",10);
+        replyBoardList = sqlSession.selectList("getAllBoard",pageMap);
         sqlSession.close();
         return replyBoardList;
     }
@@ -98,7 +110,7 @@ public class BoardDao extends JDBCConnection {
         return replyBoardList;
     }
      */
-
+    /*
     public ReplyBoardDto getBoard(int no) {
         ReplyBoardDto replyBoardDto = null;
         try {
@@ -133,7 +145,14 @@ public class BoardDao extends JDBCConnection {
         }
         return replyBoardDto;
     }
-
+     */
+    public ReplyBoardDto getBoard(int no) {
+        ReplyBoardDto replyBoardDto = null;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        replyBoardDto = sqlSession.selectOne("getBoard", no);
+        sqlSession.close();
+        return replyBoardDto;
+    }
     public int updateRelevel(ReplyBoardDto replyBoardDto) {
         int result = 0;
 
@@ -234,6 +253,14 @@ public class BoardDao extends JDBCConnection {
     }
     public ReplyBoardDto getPrevNextSelect(int num) {
         ReplyBoardDto replyBoardDto = null;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        replyBoardDto = sqlSession.selectOne("getPrevNextSelect",num);
+        sqlSession.close();
+        return replyBoardDto;
+    }
+    /*
+    public ReplyBoardDto getPrevNextSelect(int num) {
+        ReplyBoardDto replyBoardDto = null;
 
         try {
             String sql = "SELECT * FROM " +
@@ -267,6 +294,7 @@ public class BoardDao extends JDBCConnection {
         }
         return replyBoardDto;
     }
+     */
 
     public List<ReplyBoardDto> setSearchList(SearchDto searchDto) {
         List<ReplyBoardDto> searchList = null;

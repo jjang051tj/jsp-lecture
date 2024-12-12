@@ -301,3 +301,9 @@ select * from
         (select rownum as num , b01.* from
             (select * from replyboard order by regroup desc, relevel asc) b01)
         where num > 0 and num < 10;
+        
+       
+       
+SELECT * FROM replyboard;       
+
+COMMIT;

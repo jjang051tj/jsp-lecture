@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jjang051.replyboard">
-    <select id="getAllBoard" resultType="ReplyBoardDto" parameterType="PageDto">
+    <select id="getAllBoard" resultType="ReplyBoardDto" parameterType="map">
         <!--
         select * from
         (select rownum as num , b01.* from
@@ -36,5 +36,14 @@
                     order by regroup desc, relevel asc)
                 b01)
         where num between #{pageDto.startPage} and #{pageDto.endPage}
+    </select>
+    <select id="getBoard" parameterType="Integer" resultType="ReplyBoardDto">
+        SELECT * FROM REPLYBOARD WHERE NO = #{no}
+    </select>
+    <select id="getPrevNextSelect" parameterType="int" resultType="ReplyBoardDto">
+        SELECT * FROM
+            (SELECT rownum AS num ,b01.* FROM
+                (SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b01)
+        WHERE num = #{num}
     </select>
 </mapper>
