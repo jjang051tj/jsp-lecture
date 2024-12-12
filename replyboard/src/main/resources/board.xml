@@ -3,7 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jjang051.replyboard">
-    <select id="getAllBoard" resultType="ReplyBoardDto" parameterType="map">
+    <sql id="search">
+        <choose>
+            <when test="category=='title'">
+                title like concat(concat('%',#{keyword}),'%')
+            </when>
+            <when test="category=='content'">
+                content like concat(concat('%',#{keyword}),'%')
+            </when>
+            <when test="category=='userName'">
+                userName like concat(concat('%',#{keyword}),'%')
+            </when>
+        </choose>
+    </sql>
+
+    <select id="getAllBoard" resultType="ReplyBoardDto" parameterType="PageDto">
         <!--
         select * from
         (select rownum as num , b01.* from
@@ -22,17 +36,7 @@
                 (select * from replyboard
 <!--                    where title like '%'||#{keyword}||'%'-->
                     where
-                    <choose>
-                        <when test="category=='title'">
-                            title like concat(concat('%',#{keyword}),'%')
-                        </when>
-                        <when test="category=='content'">
-                            content like concat(concat('%',#{keyword}),'%')
-                        </when>
-                        <when test="category=='userName'">
-                            userName like concat(concat('%',#{keyword}),'%')
-                        </when>
-                    </choose>
+                    <include refid="search"></include>
                     order by regroup desc, relevel asc)
                 b01)
         where num between #{pageDto.startPage} and #{pageDto.endPage}
@@ -55,4 +59,19 @@
     <delete id="parentHardDeleteBoard" parameterType="int">
         DELETE FROM replyboard WHERE parentId = #{parentId}
     </delete>
+    <insert id="insertReplyBoard" parameterType="ReplyBoardDto">
+        insert into replyboard values
+        (seq_reply_board.nextval,#{title},#{content},#{userId},#{userName},#{password},#{regroup},#{relevel},#{restep},1,sysdate,1,#{parentId})
+    </insert>
+    <update id="updateRelevel" parameterType="ReplyBoardDto">
+        UPDATE replyboard SET relevel = relevel+1 WHERE regroup = #{regroup} AND relevel > #{relevel}
+    </update>
+    <select id="getTotalCount" resultType="int">
+        select count(*) as total from replyboard
+    </select>
+    <select id="getSearchTotalCount" resultType="int">
+        select count(*) as total from replyboard
+        where
+        <include refid="search"></include>
+    </select>
 </mapper>

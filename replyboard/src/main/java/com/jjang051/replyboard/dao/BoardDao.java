@@ -64,10 +64,7 @@ public class BoardDao extends JDBCConnection {
     public List<ReplyBoardDto> getAllList(PageDto pageDto) {
         List<ReplyBoardDto> replyBoardList = null;
         SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
-        Map<String,Integer> pageMap = new HashMap<>();
-        pageMap.put("startPage",1);
-        pageMap.put("endPage",10);
-        replyBoardList = sqlSession.selectList("getAllBoard",pageMap);
+        replyBoardList = sqlSession.selectList("getAllBoard",pageDto);
         sqlSession.close();
         return replyBoardList;
     }
@@ -155,6 +152,14 @@ public class BoardDao extends JDBCConnection {
     }
     public int updateRelevel(ReplyBoardDto replyBoardDto) {
         int result = 0;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        result = sqlSession.insert("updateRelevel", replyBoardDto);
+        sqlSession.close();
+        return result;
+    }
+    /*
+    public int updateRelevel(ReplyBoardDto replyBoardDto) {
+        int result = 0;
 
         try {
             String sql = "UPDATE replyboard SET relevel = relevel+1 WHERE regroup = ? AND relevel > ?";
@@ -170,6 +175,15 @@ public class BoardDao extends JDBCConnection {
         return result;
     }
 
+     */
+    public int replyBoard(ReplyBoardDto replyBoardDto) {
+        int result = 0;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        result = sqlSession.insert("insertReplyBoard", replyBoardDto);
+        sqlSession.close();
+        return result;
+    }
+    /*
     public int replyBoard(ReplyBoardDto replyBoardDto) {
         int result = 0;
         try {
@@ -192,6 +206,7 @@ public class BoardDao extends JDBCConnection {
         }
         return result;
     }
+     */
 
     private int getparentId(int no,String password) {
         int parentId = 0;
@@ -324,5 +339,13 @@ public class BoardDao extends JDBCConnection {
         searchList = sqlSession.selectList("getAllSearch", searchDto);
         sqlSession.close();
         return searchList;
+    }
+
+    public int getTotalCount() {
+        int totalCount = 0;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        totalCount = sqlSession.selectOne("getTotalCount");
+        sqlSession.close();
+        return totalCount;
     }
 }

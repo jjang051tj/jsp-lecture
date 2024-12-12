@@ -55,6 +55,48 @@
     </c:forEach>
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center mt-5">
+        <c:if test="${serverStartPagination != 1}">
+            <li class="page-item">
+                <a class="page-link" href="../board/list?page=1">
+                    <i class="bi bi-chevron-double-left fs-4"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="../board/list?page=${serverPrevPagination}">
+                    <i class="bi bi-chevron-left fs-4"></i>
+                </a>
+            </li>
+        </c:if>
+        <c:forEach begin="${serverStartPagination}" end="${serverEndPagination}" varStatus="loop" var="page" >
+            <c:choose>
+                <c:when test="${param.page eq page}">
+                    <li class="page-item active"><a class="page-link" href="../board/list?page=${page}">${page}</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link" href="../board/list?page=${page}">${page}</a></li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <c:if test="${serverEndPagination != totalPagination}">
+            <li class="page-item">
+                <a class="page-link" href="../board/list?page=${serverNextPagination}">
+                    <i class="bi bi-chevron-right fs-4"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="../board/list?page=${totalPagination}">
+                    <i class="bi bi-chevron-double-right fs-4"></i>
+                </a>
+            </li>
+        </c:if>
+    </ul>
+
+</nav>
+<h2>${serverStartPagination} / ${serverEndPagination}  </h2>
+
 <div class="d-flex justify-content-center my-5">
     <a href="../board/write" class="btn btn-primary">WRITE</a>
 </div>

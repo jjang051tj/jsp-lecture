@@ -42,7 +42,15 @@
         <div class="my-5">
             <div class="row">
                 <span class="col-2">이전 글</span>
-                <a href="../board/view?no=${prevReplyBoardDto.no}&num=${prevReplyBoardDto.num}" class="col-10">${prevReplyBoardDto.title}</a>
+                <c:choose>
+                    <c:when test="${prevReplyBoardDto ne null}">
+                        <a href="../board/view?no=${prevReplyBoardDto.no}&num=${prevReplyBoardDto.num}" class="col-10">${prevReplyBoardDto.title}</a>
+                    </c:when>
+                    <c:otherwise>
+                        <span class="col-10">이전 글이 없습니다.</span>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
             <div class="row">
                 <span class="col-2">다음 글</span>
