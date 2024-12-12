@@ -23,9 +23,8 @@ public class BoardSearch extends HttpServlet {
         SearchDto searchDto = new SearchDto();
         //searchDto.setStartPage(1);
         //searchDto.setEndPage(10);
-        searchDto.setCategory("userName");
-        searchDto.setPageDto(new PageDto(1,20));
-        searchDto.setKeyword("장성호5");
+        searchDto.setCategory(req.getParameter("category"));
+        searchDto.setKeyword(req.getParameter("search"));
 
 
         int listPerPage = 10;

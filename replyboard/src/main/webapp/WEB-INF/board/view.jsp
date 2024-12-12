@@ -65,5 +65,6 @@
             <a href="../board/delete?no=${replyBoardDto.no}" class="btn btn-primary mx-1">SOFT DELETE</a>
         </div>
     </div>
+    <%@ include file="../include/search.jsp" %>
 </main>
 <%@ include file="../include/footer.jsp" %>
