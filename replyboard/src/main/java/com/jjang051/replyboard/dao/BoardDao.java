@@ -209,7 +209,20 @@ public class BoardDao extends JDBCConnection {
         }
         return parentId;
     }
-
+    public int hardDeleteBoard(ReplyBoardDto replyBoardDto) {
+        int result = 0;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession(false);
+        int originalDeleteResult = sqlSession.delete("hardDeleteBoard",replyBoardDto);
+        if(replyBoardDto.getParentId()==0 && originalDeleteResult > 0) {
+            result = sqlSession.delete("parentHardDeleteBoard",replyBoardDto.getNo());
+            sqlSession.commit();
+        } else {
+            sqlSession.rollback();
+        }
+        sqlSession.close();
+        return result;
+    }
+    /*
     public int hardDeleteBoard(String password,int parentId, int no) {
 
         int result = 0;
@@ -235,7 +248,15 @@ public class BoardDao extends JDBCConnection {
         }
         return result;
     }
-
+     */
+    public int softDeleteBoard(ReplyBoardDto replyBoardDto) {
+        int result = 0;
+        SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();
+        result = sqlSession.delete("softDeleteBoard", replyBoardDto);
+        sqlSession.close();
+        return result;
+    }
+    /*
     public int softDeleteBoard(String password, int no) {
         int result = 0;
         try {
@@ -251,6 +272,7 @@ public class BoardDao extends JDBCConnection {
         }
         return result;
     }
+     */
     public ReplyBoardDto getPrevNextSelect(int num) {
         ReplyBoardDto replyBoardDto = null;
         SqlSession sqlSession = MybatisConnectionFactory.getSqlSession();

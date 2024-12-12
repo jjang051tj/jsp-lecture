@@ -46,4 +46,13 @@
                 (SELECT * FROM replyboard ORDER BY regroup DESC, relevel ASC) b01)
         WHERE num = #{num}
     </select>
+    <update id="softDeleteBoard" parameterType="ReplyBoardDto">
+        UPDATE REPLYBOARD SET available = 0 WHERE no = #{no} AND password = #{password}
+    </update>
+    <delete id="hardDeleteBoard" parameterType="ReplyBoardDto">
+        DELETE FROM replyboard WHERE no = #{no} AND password = #{password}
+    </delete>
+    <delete id="parentHardDeleteBoard" parameterType="int">
+        DELETE FROM replyboard WHERE parentId = #{parentId}
+    </delete>
 </mapper>

@@ -1,6 +1,7 @@
 package com.jjang051.replyboard.controller.board;
 
 import com.jjang051.replyboard.dao.BoardDao;
+import com.jjang051.replyboard.dto.ReplyBoardDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,13 +26,20 @@ public class BoardDelete extends HttpServlet {
             int parentId =  Integer.parseInt(req.getParameter("parentId"));
             int no =  Integer.parseInt(req.getParameter("no"));
             String password = req.getParameter("password");
-            if(boardDao.hardDeleteBoard(password,parentId,no)>0) {
-                resp.sendRedirect("../board/list");
-            }
+            ReplyBoardDto replyBoardDto = ReplyBoardDto.builder()
+                    .no(no)
+                    .password(password)
+                    .parentId(parentId)
+                    .build();
+            boardDao.hardDeleteBoard(replyBoardDto);
+            resp.sendRedirect("../board/list");
         } else {
             int no =  Integer.parseInt(req.getParameter("no"));
             String password = req.getParameter("password");
-            if(boardDao.softDeleteBoard(password,no)>0) {
+            ReplyBoardDto replyBoardDto = new ReplyBoardDto();
+            replyBoardDto.setNo(no);
+            replyBoardDto.setPassword(password);
+            if(boardDao.softDeleteBoard(replyBoardDto)>0) {
                 resp.sendRedirect("../board/list");
             }
         }
