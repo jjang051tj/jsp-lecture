@@ -12,29 +12,29 @@
         <h2 class="mt-5 mb-5">SIGN UP</h2>
         <form action="../member/signup" method="post" name="signup">
             <div class="mb-3">
-
                 <label for="userId" class="form-label fw-bold fs-5">USER ID</label>
                 <div class="row g-2">
                     <div class="col-10">
                         <input type="text" class="form-control form-control" name="userId" id="userId"
-                               placeholder="USER ID">
+                               placeholder="USER ID" value="${signupMemberDto.userId}">
                     </div>
                     <div class="col-2">
                         <button class="btn  btn btn-primary w-100" id="btn-duplicate-id">아이디 중복 학인</button>
                     </div>
                 </div>
-                <c:if test="${not empty idError}" >
-                    <div class="invalid-feedback" style="display: block">${idError}</div>
+                <c:if test="${not empty errorMap.userId}" >
+                    <div class="invalid-feedback" style="display: block">${errorMap.userId}</div>
                 </c:if>
             </div>
             <div class="mb-3">
                 <label for="userPw" class="form-label fw-bold fs-5">PASSWORD</label>
                 <input type="text" class="form-control form-control" name="userPw" id="userPw"
-                       placeholder="PASSWORD">
+                       placeholder="PASSWORD"  value="${signupMemberDto.userPw}">
+                <c:if test="${not empty errorMap.userPw}" >
+                    <div class="invalid-feedback" style="display: block">${errorMap.userPw}</div>
+                </c:if>
             </div>
-            <c:if test="${not empty passwordError}">
-                <div class="invalid-feedback"  style="display: block">${passwordError}</div>
-            </c:if>
+
             <div class="mb-3">
                 <label for="userName" class="form-label fw-bold fs-5">USER NAME</label>
                 <input type="text" class="form-control form-control" name="userName" id="userName"
